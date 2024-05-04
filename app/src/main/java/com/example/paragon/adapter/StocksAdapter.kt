@@ -35,6 +35,7 @@ class StocksAdapter(private val stocklist:ArrayList<StocksModel>) : RecyclerView
         holder.price.text = "$"+stocklist[position].price
         holder.company.text = stocklist[position].company
 
+        //günlük değişimin rengini belirler
         val color = if (stocklist[position].change.toDouble() < 0.00) {
             "#F44336" // Kırmızı
         } else if (stocklist[position].change.toDouble() == 0.00) {

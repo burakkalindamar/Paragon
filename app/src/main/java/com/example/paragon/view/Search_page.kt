@@ -16,7 +16,6 @@ import com.example.paragon.databinding.ActivitySearchPageBinding
 import com.example.paragon.model.StocksModel
 import com.google.firebase.Firebase
 import com.google.firebase.firestore.firestore
-import java.text.DecimalFormat
 import java.util.Locale
 
 class Search_page : AppCompatActivity() {
@@ -35,23 +34,19 @@ class Search_page : AppCompatActivity() {
             insets
         }
         hisse_verilerinni_al()
-        val recyclerView = binding.recyclerView
-        val layoutManager=LinearLayoutManager(this)
-        recyclerView.layoutManager=layoutManager
-        stocksAdapter = StocksAdapter(stocklist)
-        recyclerView.adapter=stocksAdapter
+        recyclerView()
     }
 
     fun go_balance(view: View){
         val go_balance = Intent(this, MainActivity::class.java)
         startActivity(go_balance)
-    }
+    } // anasayfaya gider
 
     fun refresh_search(view: View){
         finish()
         val refresh_search = Intent(this, Search_page::class.java)
         startActivity(refresh_search)
-    }
+    } //hisse sayfasını yeniler
 
     fun binding(){
         binding=ActivitySearchPageBinding.inflate(layoutInflater)
@@ -89,8 +84,15 @@ class Search_page : AppCompatActivity() {
                 }
             }
         }
-    }
+    } //hisse verilerini alır
 
+    fun recyclerView(){
+        val recyclerView = binding.recyclerView
+        val layoutManager=LinearLayoutManager(this)
+        recyclerView.layoutManager=layoutManager
+        stocksAdapter = StocksAdapter(stocklist)
+        recyclerView.adapter=stocksAdapter
+    } //recyclerviewe itemleri atar
 
 
     fun degisim_hesapla(price: String, opening_price: String): String {
@@ -104,9 +106,10 @@ class Search_page : AppCompatActivity() {
         val b = a / double_price
         val change = b * 100
 
+        //tr formatında nokta yerinie virgül eklendiği için double çevrilirken hata veriyor.
         val formattedChange = String.format(Locale.US, "%.2f", change)
         return formattedChange
-    }
+    } //günlük fiyat değişimini hesaplar
 
 
 

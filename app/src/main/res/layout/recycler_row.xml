@@ -24,12 +24,12 @@
 
 
             <TextView
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="13dp"
                 android:layout_marginLeft="40dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:textSize="30sp"
+                android:textSize="25sp"
                 android:fontFamily="sans-serif-condensed"
                 android:text="Apple"
                 android:id="@+id/company">
@@ -39,7 +39,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:textSize="20sp"
+                android:textSize="15sp"
                 android:fontFamily="sans-serif-condensed"
                 android:text="AAPL"
                 android:id="@+id/symbol">
@@ -73,7 +73,7 @@
                 android:layout_height="wrap_content"
                 android:fontFamily="sans-serif-condensed"
                 android:layout_weight="1"
-                android:textSize="15sp"
+                android:textSize="20sp"
                 android:text="+4,89%"
                 android:gravity="end"
                 android:id="@+id/daily_change">
