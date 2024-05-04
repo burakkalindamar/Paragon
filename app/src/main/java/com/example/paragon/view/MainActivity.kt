@@ -20,7 +20,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         binding() //binding işlemlemleri
-        database() // db ve tablo oluştur
+        //database() // db ve tablo oluştur
         //db.execSQL("INSERT INTO table1 VALUES ('APPLE' , 'APLL', 170.38 , 10.38)")
         //db.execSQL("INSERT INTO table1 VALUES ('BANK OF AMERİCA' , 'BAC', 32.62 , 38.57)")
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->

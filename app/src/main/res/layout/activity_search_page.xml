@@ -8,7 +8,29 @@
     tools:context=".view.Search_page"
     android:background="#F1F1F1">
 
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toTopOf="@+id/linearLayout2"
+        app:layout_constraintTop_toBottomOf="@+id/frameLayout2">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recyclerView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingTop="10dp"
+                android:paddingBottom="10dp"
+                android:clipToPadding="false" />
+        </LinearLayout>
+    </ScrollView>
+
     <LinearLayout
+        android:id="@+id/linearLayout2"
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:orientation="horizontal"
@@ -20,8 +42,8 @@
             android:id="@+id/search_search_button"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@color/white"
             android:layout_weight="1"
+            android:background="@color/white"
             android:onClick="refresh_search"
             app:srcCompat="@drawable/baseline_search_24" />
 
@@ -29,13 +51,14 @@
             android:id="@+id/search_balance_button"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@color/white"
             android:layout_weight="1"
+            android:background="@color/white"
             android:onClick="go_balance"
             app:srcCompat="@drawable/baseline_account_balance_wallet_24" />
     </LinearLayout>
 
     <FrameLayout
+        android:id="@+id/frameLayout2"
         android:layout_width="match_parent"
         android:layout_height="100dp"
         android:background="@color/white"
@@ -51,6 +74,7 @@
             android:autoSizeTextType="none"
             android:fontFamily="sans-serif-condensed"
             android:text="HİSSE SENETLERİ"
-            android:textSize="24sp"/>
+            android:textSize="24sp" />
     </FrameLayout>
+
 </androidx.constraintlayout.widget.ConstraintLayout>
