@@ -58,6 +58,7 @@ class StocksActivity : AppCompatActivity() {
         veriSeti.setDrawFilled(true)
         veriSeti.fillColor = Color.BLACK
         veriSeti.setCircleColor(Color.BLACK)
+        veriSeti.valueTextSize=10f
 
         // Hat grafiğinin çizileceği veriyi temsil eden veri yapısı
         val hatVerisi = LineData(veriSeti)
@@ -66,7 +67,6 @@ class StocksActivity : AppCompatActivity() {
         binding.lineChart.data = hatVerisi
 
         // Animasyonlar
-        binding.lineChart.animateX(2000)
         binding.lineChart.animateY(2000)
 
         // Gereksiz Öğelerin Kaldırılması
@@ -74,14 +74,16 @@ class StocksActivity : AppCompatActivity() {
         binding.lineChart.xAxis.setDrawLabels(false)
         binding.lineChart.axisRight.setDrawLabels(false)
         binding.lineChart.legend.isEnabled = false
-        binding.lineChart.description.isEnabled = false
         binding.lineChart.setTouchEnabled(false)
 
         // **Y-ekseni ızgara çizgilerini kalınlaştır ve rengini siyah yap**
         val leftAxis = binding.lineChart.axisLeft
-        leftAxis.gridLineWidth = 2f // Kalınlığı istediğiniz gibi ayarlayın
-        leftAxis.gridColor = Color.GRAY // Rengi siyah yapın
         leftAxis.textSize=13f
+
+        binding.lineChart.xAxis.setDrawGridLines(false)
+        binding.lineChart.axisLeft.setDrawGridLines(false)
+
+        binding.lineChart.description.isEnabled=false
 
         // Grafiği güncelle
         binding.lineChart.invalidate()
