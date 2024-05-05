@@ -8,10 +8,10 @@
             <InsightsFilterSettings>
               <option name="connection">
                 <ConnectionSetting>
-                  <option name="appId" value="PLACEHOLDER" />
-                  <option name="mobileSdkAppId" value="" />
-                  <option name="projectId" value="" />
-                  <option name="projectNumber" value="" />
+                  <option name="appId" value="com.example.paragon" />
+                  <option name="mobileSdkAppId" value="1:653895828533:android:c311df0eafdc09d919dd7c" />
+                  <option name="projectId" value="paragon-bb2c4" />
+                  <option name="projectNumber" value="653895828533" />
                 </ConnectionSetting>
               </option>
               <option name="signal" value="SIGNAL_UNSPECIFIED" />

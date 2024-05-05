@@ -14,12 +14,15 @@ import com.example.paragon.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
     lateinit var binding: ActivityMainBinding
-    lateinit var db : SQLiteDatabase
+    lateinit var dbsql : SQLiteDatabase
     lateinit var context: Context
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         binding() //binding işlemlemleri
+
+
         //database() // db ve tablo oluştur
         //db.execSQL("INSERT INTO table1 VALUES ('APPLE' , 'APLL', 170.38 , 10.38)")
         //db.execSQL("INSERT INTO table1 VALUES ('BANK OF AMERİCA' , 'BAC', 32.62 , 38.57)")
@@ -49,9 +52,10 @@ class MainActivity : AppCompatActivity() {
 
     fun database(){
         context=this
-        db=context.openOrCreateDatabase("testdb",Context.MODE_PRIVATE,null)
-        db.execSQL("CREATE TABLE IF NOT EXISTS table1(stocks TEXT, symbol TEXT, buying_price REAL, shares REAL)")
-
+        dbsql=context.openOrCreateDatabase("testdb",Context.MODE_PRIVATE,null)
+        dbsql.execSQL("CREATE TABLE IF NOT EXISTS table1(stocks TEXT, symbol TEXT, buying_price REAL, shares REAL)")
     }
+
+
 
 }

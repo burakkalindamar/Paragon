@@ -1,6 +1,7 @@
 package com.example.paragon.adapter
 
 import android.annotation.SuppressLint
+import android.content.Intent
 import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.View
@@ -8,8 +9,9 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.paragon.R
-import com.example.paragon.model.StocksModel
 import com.example.paragon.R.layout.recycler_row
+import com.example.paragon.model.StocksModel
+import com.example.paragon.view.StocksActivity
 
 class StocksAdapter(private val stocklist:ArrayList<StocksModel>) : RecyclerView.Adapter<StocksAdapter.StockHolder>() {
 
@@ -44,9 +46,13 @@ class StocksAdapter(private val stocklist:ArrayList<StocksModel>) : RecyclerView
             "#4CAF50" // Yeşil
         }
         holder.daily_cahange.setTextColor(Color.parseColor(color))
-
         holder.daily_cahange.text = stocklist[position].change+"%"
 
+
+        holder.itemView.setOnClickListener {
+            val intent = Intent(holder.itemView.context, StocksActivity::class.java)
+            holder.itemView.context.startActivity(intent)
+        }
 
     }
 }

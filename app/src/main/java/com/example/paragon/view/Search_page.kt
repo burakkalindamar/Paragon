@@ -72,10 +72,15 @@ class Search_page : AppCompatActivity() {
                             val price = stock.get("price") as String
                             val company = stock.get("company") as String
                             val opening_price = stock.get("opening_price") as String
+                            val daily_highest = stock.get("daily_highest") as String
+                            val daily_lowest = stock.get("daily_lowest") as String
+                            val highest_price = stock.get("highest_price") as String
+                            val lowest_price = stock.get("lowest_price") as String
+                            val pe_ratio = stock.get("pe_ratio") as String
 
                             val change = degisim_hesapla(price,opening_price)
 
-                            val alinanveri = StocksModel(symbol,price,company,change)
+                            val alinanveri = StocksModel(symbol,price,company,change,daily_highest,daily_lowest,highest_price,lowest_price,pe_ratio)
                             stocklist.add(alinanveri)
                         }
                         stocksAdapter.notifyDataSetChanged()
