@@ -9,6 +9,7 @@ class StocksModel(
     var daily_lowest: String,
     var highest_price: String,
     var lowest_price: String,
-    var pe_ratio:String
+    var pe_ratio:String,
+    var openingPrice:String
     ) {
 }

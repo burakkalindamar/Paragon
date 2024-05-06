@@ -80,7 +80,7 @@ class Search_page : AppCompatActivity() {
 
                             val change = degisim_hesapla(price,opening_price)
 
-                            val alinanveri = StocksModel(symbol,price,company,change,daily_highest,daily_lowest,highest_price,lowest_price,pe_ratio)
+                            val alinanveri = StocksModel(symbol,price,company,change,daily_highest,daily_lowest,highest_price,lowest_price,pe_ratio,opening_price)
                             stocklist.add(alinanveri)
                         }
                         stocksAdapter.notifyDataSetChanged()

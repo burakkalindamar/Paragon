@@ -48,6 +48,7 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <TextView
+            android:textColor="@color/black"
             android:id="@+id/textView3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -77,6 +78,7 @@
             android:orientation="vertical">
 
             <TextView
+                android:textColor="@color/black"
                 android:id="@+id/textView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -86,6 +88,7 @@
                 android:textSize="24sp" />
 
             <TextView
+                android:textColor="@color/black"
                 android:id="@+id/textView5"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -100,7 +103,7 @@
                 android:id="@+id/textView6"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:background="#0cc747"
+                android:textColor="@color/green"
                 android:layout_marginLeft="32dp"
                 android:text="+17.46%"
                 android:textSize="17sp" />

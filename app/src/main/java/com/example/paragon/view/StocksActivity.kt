@@ -1,7 +1,9 @@
 package com.example.paragon.view
 
+import android.annotation.SuppressLint
 import android.graphics.Color
 import android.os.Bundle
+import android.view.View
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
@@ -27,6 +29,9 @@ class StocksActivity : AppCompatActivity() {
         }
         binding()
         line_chart()
+        verileriYaz()
+
+
     }
 
     fun binding(){
@@ -89,7 +94,54 @@ class StocksActivity : AppCompatActivity() {
         binding.lineChart.invalidate()
     }
 
+    @SuppressLint("SetTextI18n")
+    fun verileriYaz() {
+        val intent = intent
+        val dolar = "$"
+        val yuzde = "%"
 
+        val company = intent.getStringExtra("company")
+        binding.stockname.text = company.toString()
+
+        val price = intent.getStringExtra("price")
+        binding.stockPrice.text = dolar+price.toString()
+
+        val dailyChange = intent.getStringExtra("dailyChange")
+        binding.stockDailyChange.text = dailyChange.toString()+yuzde
+
+        val dailyChangeDouble = dailyChange!!.toDouble()
+
+        if (dailyChangeDouble>0){
+            binding.stockDailyChange.setTextColor(Color.parseColor("#4CAF50")) //YEŞİL
+        }else if (dailyChangeDouble<0){
+            binding.stockDailyChange.setTextColor(Color.parseColor("#F44336")) //KIRMIZI
+        }else{
+            binding.stockDailyChange.setTextColor(Color.parseColor("#9A9A9A")) //GRİ
+        }
+
+        val openingPrice = intent.getStringExtra("openingPrice")
+        binding.openingPrice.text = dolar+openingPrice.toString()
+
+        val peRatio = intent.getStringExtra("peRatio")
+        binding.peRatio.text = peRatio.toString()
+
+        val dailyHighest = intent.getStringExtra("dailyHighest")
+        binding.dailyHighest.text = dolar+dailyHighest.toString()
+
+        val dailyLowest = intent.getStringExtra("dailyLowest")
+        binding.dailyLowest.text = dolar+dailyLowest.toString()
+
+        val highestPrice = intent.getStringExtra("highestPrice")
+        binding.highestPrice.text = dolar+highestPrice.toString()
+
+        val lowestPrice = intent.getStringExtra("highestPrice")
+        binding.lowestPrice.text = dolar+lowestPrice.toString()
+
+    }
+
+    fun geri(view: View){
+        onBackPressed()
+    }
 
 
 

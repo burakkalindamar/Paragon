@@ -25,8 +25,19 @@
             android:layout_gravity="center"
             android:autoSizeTextType="none"
             android:fontFamily="sans-serif-condensed"
+            android:textColor="@color/black"
             android:text="APPLE"
             android:textSize="24sp" />
+
+        <ImageButton
+            android:id="@+id/imageButton3"
+            android:layout_width="81dp"
+            android:layout_height="match_parent"
+            app:srcCompat="@drawable/baseline_arrow_back_ios_new_24"
+            android:background="@color/white"
+            android:onClick="geri"/>
+
+
     </FrameLayout>
 
 
@@ -62,6 +73,7 @@
             android:layout_weight="1"
             android:gravity="center"
             android:padding="10dp"
+            android:textColor="@color/black"
             android:text="$183.38"
             android:textSize="27sp"
             android:textStyle="bold" />
@@ -83,6 +95,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginLeft="10dp"
         android:background="@drawable/radius"
         android:orientation="horizontal"
         app:layout_constraintTop_toBottomOf="@+id/lineChart"
@@ -112,6 +126,7 @@
                 </TextView>
 
                 <TextView
+                    android:id="@+id/openingPrice"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:fontFamily="sans-serif-condensed"
@@ -140,6 +155,7 @@
                 </TextView>
 
                 <TextView
+                    android:id="@+id/dailyHighest"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:fontFamily="sans-serif-condensed"
@@ -167,6 +183,7 @@
                 </TextView>
 
                 <TextView
+                    android:id="@+id/highestPrice"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:fontFamily="sans-serif-condensed"
@@ -203,6 +220,7 @@
                 </TextView>
 
                 <TextView
+                    android:id="@+id/peRatio"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:fontFamily="sans-serif-condensed"
@@ -230,6 +248,7 @@
                 </TextView>
 
                 <TextView
+                    android:id="@+id/dailyLowest"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:fontFamily="sans-serif-condensed"
@@ -257,6 +276,7 @@
                 </TextView>
 
                 <TextView
+                    android:id="@+id/lowestPrice"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:fontFamily="sans-serif-condensed"
@@ -276,28 +296,39 @@
         android:id="@+id/linearLayout"
         android:layout_width="match_parent"
         android:layout_height="70dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginBottom="10dp"
         android:orientation="horizontal"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent">
 
-        <ImageButton
-            android:id="@+id/sat"
+
+        <Button
+            android:id="@+id/filledTonalButton2"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:background="@color/white"
-            app:srcCompat="@drawable/baseline_search_24" />
+            android:fontFamily="sans-serif-condensed"
+            android:background="@drawable/sellbutton"
+            android:textSize="30dp"
+            android:text="SAT"
+            android:textColor="@color/red" />
 
-        <ImageButton
-            android:id="@+id/al"
+        <Button
+            android:layout_weight="1"
+            android:id="@+id/filledTonalButton"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:background="@color/white"
-            app:srcCompat="@drawable/baseline_account_balance_wallet_24" />
-
+            android:fontFamily="sans-serif-condensed"
+            android:text="Al"
+            android:textSize="30dp"
+            android:background="@drawable/buybutton"
+            />
     </LinearLayout>
+
+
 
     <TextView
         android:id="@+id/textView2"
