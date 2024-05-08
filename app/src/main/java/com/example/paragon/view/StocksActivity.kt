@@ -137,6 +137,9 @@ class StocksActivity : AppCompatActivity() {
         val lowestPrice = intent.getStringExtra("highestPrice")
         binding.lowestPrice.text = dolar+lowestPrice.toString()
 
+        val symbol = intent.getStringExtra("symbol")
+        binding.stocksymbol.text = symbol.toString()
+
     }
 
     fun geri(view: View){

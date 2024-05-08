@@ -64,6 +64,8 @@ class StocksAdapter(private val stocklist:ArrayList<StocksModel>) : RecyclerView
             intent.putExtra("highestPrice",stocklist[position].highest_price)
             intent.putExtra("lowestPrice",stocklist[position].lowest_price)
 
+            intent.putExtra("symbol",stocklist[position].symbol)
+
 
             holder.itemView.context.startActivity(intent)
         }
