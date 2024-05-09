@@ -25,7 +25,7 @@ class MainActivity : AppCompatActivity() {
 
         //database() // db ve tablo oluştur
         //db.execSQL("INSERT INTO table1 VALUES ('APPLE' , 'APLL', 170.38 , 10.38)")
-        //db.execSQL("INSERT INTO table1 VALUES ('BANK OF AMERİCA' , 'BAC', 32.62 , 38.57)")
+        //db.execSQL("INSERT INTO table1 VALUES ('BANK OF AMERİCA' , 'BAC', 32.62 , 38.57)"
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
