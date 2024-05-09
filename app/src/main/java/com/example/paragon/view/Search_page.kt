@@ -116,11 +116,4 @@ class Search_page : AppCompatActivity() {
         return formattedChange
     } //günlük fiyat değişimini hesaplar
 
-
-
-
-
-
-
-
 }

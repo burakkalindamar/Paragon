@@ -325,6 +325,7 @@
             android:background="@drawable/sellbutton"
             android:textSize="30dp"
             android:text="SAT"
+            android:onClick="go_sellActivity"
             android:textColor="@color/red" />
 
         <Button
@@ -334,6 +335,7 @@
             android:layout_height="match_parent"
             android:fontFamily="sans-serif-condensed"
             android:text="Al"
+            android:onClick="go_buyActivity"
             android:textSize="30dp"
             android:background="@drawable/buybutton"
             />

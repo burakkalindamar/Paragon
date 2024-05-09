@@ -1,6 +1,7 @@
 package com.example.paragon.view
 
 import android.annotation.SuppressLint
+import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
 import android.view.View
@@ -21,7 +22,6 @@ class StocksActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
-        setContentView(R.layout.activity_stocks)
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
@@ -39,8 +39,6 @@ class StocksActivity : AppCompatActivity() {
         val view = binding.root
         setContentView(view)
     }
-
-
 
     fun line_chart() {
         // Veri noktalarını içeren liste
@@ -144,6 +142,22 @@ class StocksActivity : AppCompatActivity() {
 
     fun geri(view: View){
         onBackPressed()
+    }
+
+    fun go_sellActivity(view: View){
+        val go_sellActivity = Intent(this, SellActivity::class.java)
+        startActivity(go_sellActivity)
+    }
+
+    fun go_buyActivity(view: View){
+        val symbol = intent.getStringExtra("symbol")
+        val company = intent.getStringExtra("company")
+
+        val go_buyActivity = Intent(this, BuyActivity::class.java)
+        go_buyActivity.putExtra("symbol",symbol)
+        go_buyActivity.putExtra("company",company)
+
+        startActivity(go_buyActivity)
     }
 
 
