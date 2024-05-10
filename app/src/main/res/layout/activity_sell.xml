@@ -5,15 +5,185 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".view.SellActivity">
+    android:background="@color/background"
+    android:textAlignment="center"
+    tools:context=".view.BuyActivity">
+
+
+    <FrameLayout
+        android:id="@+id/frameLayout11"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:background="@color/white"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:autoSizeTextType="none"
+            android:fontFamily="sans-serif-condensed"
+            android:text="APPLE"
+            android:textColor="@color/blue"
+            android:textSize="24sp" />
+
+        <ImageButton
+            android:id="@+id/AAAA"
+            android:layout_width="81dp"
+            android:layout_height="match_parent"
+            android:background="@color/white"
+            android:onClick="geri"
+            app:srcCompat="@drawable/baseline_arrow_back_ios_new_24" />
+
+        <TextView
+            android:id="@+id/symbol"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="33dp"
+            android:fontFamily="sans-serif-condensed"
+            android:text="AAPL"
+            android:textAlignment="center" />
+
+
+    </FrameLayout>
+
+    <Button
+        android:id="@+id/sell"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="304dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:background="@drawable/sellbutton"
+        android:fontFamily="sans-serif-condensed"
+        android:text="SAT"
+        android:onClick="sat"
+        android:textColor="@color/white"
+        android:textSize="30dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.6"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/frameLayout11" />
+
+    <LinearLayout
+        android:id="@+id/linearLayout5"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/radius"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toTopOf="@+id/buy"
+        app:layout_constraintTop_toBottomOf="@+id/frameLayout11"
+        app:layout_constraintVertical_bias="0.041"
+        tools:layout_editor_absoluteX="0dp">
+
+        <FrameLayout
+            android:id="@+id/frameLayout3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp">
+
+            <TextView
+                android:id="@+id/textView18"
+                android:layout_width="132dp"
+                android:layout_height="match_parent"
+                android:fontFamily="sans-serif-condensed"
+                android:gravity="center"
+                android:text="Fiyat :"
+                android:textColor="@color/black"
+                android:textSize="30dp" />
+
+            <TextView
+                android:id="@+id/sellPrice"
+                android:layout_width="191dp"
+                android:layout_height="match_parent"
+                android:layout_gravity="end"
+                android:fontFamily="sans-serif-condensed"
+                android:gravity="center"
+                android:padding="10dp"
+                android:text="$189.69"
+                android:textColor="@color/black"
+                android:textSize="30dp" />
+        </FrameLayout>
+
+        <FrameLayout
+            android:id="@+id/frameLayout5"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp">
+
+            <TextView
+                android:id="@+id/s20"
+                android:layout_width="130dp"
+                android:layout_height="60dp"
+                android:fontFamily="sans-serif-condensed"
+                android:gravity="center"
+                android:text="Adet :"
+                android:textColor="@color/black"
+                android:textSize="30dp" />
+
+            <EditText
+                android:id="@+id/adet"
+                android:layout_width="119dp"
+                android:layout_height="58dp"
+                android:layout_gravity="end"
+                android:layout_marginRight="30dp"
+                android:ellipsize="none"
+                android:ems="10"
+                android:fontFamily="sans-serif-condensed"
+                android:inputType="number"
+                android:singleLine="true"
+                android:textSize="20dp" />
+
+        </FrameLayout>
+
+        <FrameLayout
+            android:id="@+id/frameLayout4"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp">
+
+            <TextView
+                android:id="@+id/textView23"
+                android:layout_width="120dp"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:fontFamily="sans-serif-condensed"
+                android:gravity="center"
+                android:text="Tutar :"
+                android:textColor="@color/black"
+                android:textSize="30dp" />
+
+            <TextView
+                android:id="@+id/toplamTutar"
+                android:layout_width="191dp"
+                android:layout_height="match_parent"
+                android:layout_gravity="end"
+                android:fontFamily="sans-serif-condensed"
+                android:gravity="center"
+                android:padding="10dp"
+                android:text="$189.69"
+                android:textColor="@color/black"
+                android:textSize="30dp" />
+        </FrameLayout>
+
+    </LinearLayout>
 
     <TextView
-        android:id="@+id/textView8"
+        android:id="@+id/mevcutadet"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="137dp"
-        android:layout_marginBottom="345dp"
-        android:text="sat"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginBottom="20dp"
+        android:fontFamily="sans-serif-condensed"
+        android:text="TextView"
+        app:layout_constraintBottom_toTopOf="@+id/sell"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.501"
         app:layout_constraintStart_toStartOf="parent" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

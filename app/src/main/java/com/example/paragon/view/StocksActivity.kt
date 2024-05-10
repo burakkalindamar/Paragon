@@ -30,8 +30,6 @@ class StocksActivity : AppCompatActivity() {
         }
         line_chart()
         verileriYaz()
-
-
     }
 
     fun binding(){
@@ -41,29 +39,54 @@ class StocksActivity : AppCompatActivity() {
     }
 
     fun line_chart() {
-        // Veri noktalarını içeren liste
         val veriNoktalari = mutableListOf<Entry>()
 
-        // Veri noktalarını doldurun (kullanıcının verilerini buraya ekleyin)
+        // Veri noktalarını doldur
         veriNoktalari.add(Entry(1f, 30f))
         veriNoktalari.add(Entry(2f, 20f))
         veriNoktalari.add(Entry(3f, 15f))
         veriNoktalari.add(Entry(4f, 10f))
         veriNoktalari.add(Entry(5f, 20f))
         veriNoktalari.add(Entry(6f, 15f))
+        veriNoktalari.add(Entry(7f, 20f))
+        veriNoktalari.add(Entry(8f, 25f))
+        veriNoktalari.add(Entry(9f, 25f))
+        veriNoktalari.add(Entry(10f, 28f))
+        veriNoktalari.add(Entry(11f, 25f))
+        veriNoktalari.add(Entry(12f, 22f))
+        veriNoktalari.add(Entry(13f, 33f))
+        veriNoktalari.add(Entry(14f, 30f))
+        veriNoktalari.add(Entry(15f, 28f))
+        veriNoktalari.add(Entry(16f, 25f))
+        veriNoktalari.add(Entry(17f, 20f))
+        veriNoktalari.add(Entry(18f, 27f))
+        veriNoktalari.add(Entry(19f, 33f))
+        veriNoktalari.add(Entry(20f, 38f))
+        veriNoktalari.add(Entry(21f, 45f))
+        veriNoktalari.add(Entry(22f, 53f))
+        veriNoktalari.add(Entry(23f, 52f))
+        veriNoktalari.add(Entry(24f, 51f))
+        veriNoktalari.add(Entry(25f, 47f))
+        veriNoktalari.add(Entry(26f, 40f))
+        veriNoktalari.add(Entry(27f, 44f))
+        veriNoktalari.add(Entry(28f, 38f))
+        veriNoktalari.add(Entry(29f, 35f))
+        veriNoktalari.add(Entry(30f, 30f))
 
-        // Hat grafiğinin görsel özelliklerini tanımlayan veri kümesi
         val veriSeti = LineDataSet(veriNoktalari, "")
 
         // Görsel Özelleştirme
-        veriSeti.color = Color.BLACK
+        veriSeti.color = Color.parseColor("#1d6fdb")
         veriSeti.lineWidth = 4f
         veriSeti.setDrawFilled(true)
-        veriSeti.fillColor = Color.BLACK
-        veriSeti.setCircleColor(Color.BLACK)
-        veriSeti.valueTextSize=10f
+        veriSeti.fillColor = Color.parseColor("#1d6fdb")
+        veriSeti.setDrawCircles(false) // Daireleri kaldırır
+        veriSeti.setDrawValues(false)  // Üstlerindeki metinleri kaldırır
 
-        // Hat grafiğinin çizileceği veriyi temsil eden veri yapısı
+
+        // Bezier eğrileri kullanarak daha yumuşak bir eğri elde et
+        veriSeti.mode = LineDataSet.Mode.CUBIC_BEZIER
+
         val hatVerisi = LineData(veriSeti)
 
         // Hat grafiğini görüntülemek için kullanılan görünüm referansı
@@ -79,18 +102,19 @@ class StocksActivity : AppCompatActivity() {
         binding.lineChart.legend.isEnabled = false
         binding.lineChart.setTouchEnabled(false)
 
-        // **Y-ekseni ızgara çizgilerini kalınlaştır ve rengini siyah yap**
+        // Y-ekseni ızgara çizgilerini kalınlaştır ve rengini siyah yap
         val leftAxis = binding.lineChart.axisLeft
-        leftAxis.textSize=13f
+        leftAxis.textSize = 13f
 
         binding.lineChart.xAxis.setDrawGridLines(false)
         binding.lineChart.axisLeft.setDrawGridLines(false)
 
-        binding.lineChart.description.isEnabled=false
+        binding.lineChart.description.isEnabled = false
 
         // Grafiği güncelle
         binding.lineChart.invalidate()
     }
+
 
     @SuppressLint("SetTextI18n")
     fun verileriYaz() {
@@ -132,7 +156,7 @@ class StocksActivity : AppCompatActivity() {
         val highestPrice = intent.getStringExtra("highestPrice")
         binding.highestPrice.text = dolar+highestPrice.toString()
 
-        val lowestPrice = intent.getStringExtra("highestPrice")
+        val lowestPrice = intent.getStringExtra("lowestPrice")
         binding.lowestPrice.text = dolar+lowestPrice.toString()
 
         val symbol = intent.getStringExtra("symbol")
@@ -145,14 +169,17 @@ class StocksActivity : AppCompatActivity() {
     }
 
     fun go_sellActivity(view: View){
+        val symbol = intent.getStringExtra("symbol")
+        val company = intent.getStringExtra("company")
         val go_sellActivity = Intent(this, SellActivity::class.java)
+        go_sellActivity.putExtra("symbol",symbol)
+        go_sellActivity.putExtra("company",company)
         startActivity(go_sellActivity)
     }
 
     fun go_buyActivity(view: View){
         val symbol = intent.getStringExtra("symbol")
         val company = intent.getStringExtra("company")
-
         val go_buyActivity = Intent(this, BuyActivity::class.java)
         go_buyActivity.putExtra("symbol",symbol)
         go_buyActivity.putExtra("company",company)

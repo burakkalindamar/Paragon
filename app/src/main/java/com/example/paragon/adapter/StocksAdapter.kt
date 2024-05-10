@@ -25,7 +25,8 @@ class StocksAdapter(private val stocklist:ArrayList<StocksModel>) : RecyclerView
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): StockHolder {
         val inflater = LayoutInflater.from(parent.context)
         val view = inflater.inflate(recycler_row, parent, false)
-        return StockHolder(view)    }
+        return StockHolder(view)
+    }
 
     override fun getItemCount(): Int {
         return stocklist.size

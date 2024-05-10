@@ -5,7 +5,7 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#F1F1F1"
+    android:background="@color/background"
     android:fitsSystemWindows="true"
     tools:context=".view.StocksActivity">
 
@@ -25,7 +25,7 @@
             android:layout_gravity="center"
             android:autoSizeTextType="none"
             android:fontFamily="sans-serif-condensed"
-            android:textColor="@color/black"
+            android:textColor="@color/blue"
             android:text="APPLE"
             android:textSize="24sp" />
 
@@ -105,15 +105,16 @@
         android:id="@+id/linearLayout4"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="40dp"
         android:layout_marginRight="10dp"
         android:layout_marginLeft="10dp"
-        android:background="@drawable/radius"
         android:orientation="horizontal"
         app:layout_constraintTop_toBottomOf="@+id/lineChart"
         tools:layout_editor_absoluteX="1dp">
 
         <LinearLayout
+            android:layout_marginRight="5dp"
+            android:background="@drawable/radius"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1"
@@ -124,12 +125,13 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_marginTop="15dp"
-                android:layout_marginBottom="30dp"
+                android:layout_marginBottom="20dp"
                 android:orientation="vertical">
 
                 <TextView
                     android:layout_width="115dp"
                     android:layout_height="wrap_content"
+                    android:gravity="center"
                     android:fontFamily="sans-serif-condensed"
                     android:text="Açılış"
                     android:textSize="15sp">
@@ -140,6 +142,7 @@
                     android:id="@+id/openingPrice"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:gravity="center"
                     android:fontFamily="sans-serif-condensed"
                     android:text="$186.65"
                     android:textColor="@color/black"
@@ -153,12 +156,13 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:layout_marginBottom="30dp"
+                android:layout_marginBottom="20dp"
                 android:orientation="vertical">
 
                 <TextView
                     android:layout_width="115dp"
                     android:layout_height="wrap_content"
+                    android:gravity="center"
                     android:fontFamily="sans-serif-condensed"
                     android:text="En Yüksek"
                     android:textSize="15sp">
@@ -169,6 +173,7 @@
                     android:id="@+id/dailyHighest"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:gravity="center"
                     android:fontFamily="sans-serif-condensed"
                     android:text="$187.00"
                     android:textColor="@color/black"
@@ -198,6 +203,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:fontFamily="sans-serif-condensed"
+                    android:gravity="center"
                     android:text="$199.11"
                     android:textColor="@color/black"
                     android:textSize="20sp">
@@ -208,6 +214,8 @@
         </LinearLayout>
 
         <LinearLayout
+            android:layout_marginLeft="5dp"
+            android:background="@drawable/radius"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1"
@@ -218,11 +226,12 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_marginTop="15dp"
-                android:layout_marginBottom="30dp"
+                android:layout_marginBottom="20dp"
                 android:orientation="vertical">
 
                 <TextView
                     android:layout_width="115dp"
+                    android:gravity="center"
                     android:layout_height="wrap_content"
                     android:fontFamily="sans-serif-condensed"
                     android:text="F/K"
@@ -234,6 +243,7 @@
                     android:id="@+id/peRatio"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:gravity="center"
                     android:fontFamily="sans-serif-condensed"
                     android:text="26.08"
                     android:textColor="@color/black"
@@ -246,12 +256,13 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:layout_marginBottom="30dp"
+                android:layout_marginBottom="20dp"
                 android:orientation="vertical">
 
                 <TextView
                     android:layout_width="115dp"
                     android:layout_height="wrap_content"
+                    android:gravity="center"
                     android:fontFamily="sans-serif-condensed"
                     android:text="En Düşük"
                     android:textSize="15sp">
@@ -263,6 +274,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:fontFamily="sans-serif-condensed"
+                    android:gravity="center"
                     android:text="$182.66"
                     android:textColor="@color/black"
                     android:textSize="20sp">
@@ -292,6 +304,7 @@
                     android:layout_height="wrap_content"
                     android:fontFamily="sans-serif-condensed"
                     android:text="$164.08"
+                    android:gravity="center"
                     android:textColor="@color/black"
                     android:textSize="20sp">
 
@@ -321,16 +334,19 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1"
+            android:layout_margin="5dp"
             android:fontFamily="sans-serif-condensed"
             android:background="@drawable/sellbutton"
             android:textSize="30dp"
             android:text="SAT"
             android:onClick="go_sellActivity"
-            android:textColor="@color/red" />
+            android:textColor="@color/white" />
 
         <Button
+            android:textColor="@color/white"
             android:layout_weight="1"
             android:id="@+id/filledTonalButton"
+            android:layout_margin="5dp"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:fontFamily="sans-serif-condensed"
@@ -345,7 +361,7 @@
 
     <TextView
         android:id="@+id/textView2"
-        android:layout_marginTop="-35dp"
+        android:layout_marginTop="-55dp"
         android:textSize="10dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
