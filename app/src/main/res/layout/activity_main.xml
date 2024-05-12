@@ -99,7 +99,7 @@
                     android:layout_weight="1"
                     android:gravity="center"
                     android:fontFamily="sans-serif-condensed"
-                    android:text="Nakit Bakiye :"
+                    android:text="NAKİT BAKİYE :"
                     android:textColor="@color/blue"
                     android:textSize="15dp">
 
@@ -130,7 +130,7 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Portföy Değeri"
+                    android:text="PORTFÖY DEĞERİ"
                     android:gravity="center"
                     android:textColor="@color/black"
                     android:fontFamily="sans-serif-condensed"
@@ -178,7 +178,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="20dp"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="5dp"
             android:layout_marginRight="20dp"
             android:layout_marginBottom="10dp"
             android:orientation="vertical">
@@ -188,7 +188,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:clipToPadding="false"
-                android:paddingTop="10dp"
+                android:paddingTop="5dp"
                 android:paddingBottom="10dp"
                 app:layout_constraintBottom_toTopOf="@+id/linearLayout"
                 app:layout_constraintTop_toBottomOf="@+id/frameLayout6"
@@ -201,9 +201,9 @@
         android:id="@+id/frameLayout7"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="10dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginRight="10dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginRight="20dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/frameLayout6">
@@ -213,8 +213,9 @@
             android:layout_height="wrap_content"
             android:background="@drawable/radius"
             android:gravity="center"
-            android:text="PORTFÖYÜM"
-            android:textColor="@color/blue"
+            android:fontFamily="sans-serif-condensed"
+            android:text="HİSSE SENETLERİM"
+            android:textColor="@color/black"
             android:textSize="20dp">
 
         </TextView>

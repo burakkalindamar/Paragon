@@ -73,6 +73,8 @@
         android:id="@+id/linearLayout5"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginRight="10dp"
+        android:layout_marginLeft="10dp"
         android:layout_marginTop="20dp"
         android:background="@drawable/radius"
         android:orientation="vertical"
@@ -112,6 +114,13 @@
         </FrameLayout>
 
         <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="3dp"
+            android:background="#1A000000">
+
+        </FrameLayout>
+
+        <FrameLayout
             android:id="@+id/frameLayout5"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -139,6 +148,13 @@
                 android:inputType="number"
                 android:singleLine="true"
                 android:textSize="20dp" />
+
+        </FrameLayout>
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="3dp"
+            android:background="#1A000000">
 
         </FrameLayout>
 

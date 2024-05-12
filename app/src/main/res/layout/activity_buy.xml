@@ -112,6 +112,13 @@
         </FrameLayout>
 
         <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="3dp"
+            android:background="#1A000000">
+
+        </FrameLayout>
+
+        <FrameLayout
             android:id="@+id/frameLayout5"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -139,6 +146,13 @@
                 android:inputType="number"
                 android:singleLine="true"
                 android:textSize="20dp" />
+
+        </FrameLayout>
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="3dp"
+            android:background="#1A000000">
 
         </FrameLayout>
 
@@ -174,5 +188,16 @@
         </FrameLayout>
 
     </LinearLayout>
+
+    <TextView
+        android:id="@+id/mevcutbakiye"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
+        android:text="TextView"
+        app:layout_constraintBottom_toTopOf="@+id/buy"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.501"
+        app:layout_constraintStart_toStartOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

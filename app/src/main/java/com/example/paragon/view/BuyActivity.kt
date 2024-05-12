@@ -143,6 +143,14 @@ class BuyActivity : AppCompatActivity() {
     fun database(){
         context=this
         dbsql=context.openOrCreateDatabase("testdb",Context.MODE_PRIVATE,null)
+        val bakiyeQuery = "SELECT * FROM testbakiye1"
+        val bakiyeCursor = dbsql.rawQuery(bakiyeQuery, null)
+        var bakiye = 0.00
+        if (bakiyeCursor.moveToFirst()) {
+            bakiye = bakiyeCursor.getDouble(0)
+        }
+        binding.mevcutbakiye.text="MEVCUT BAKİYE : $"+bakiye
+        bakiyeCursor.close()
     }
 
     @SuppressLint("Recycle")
