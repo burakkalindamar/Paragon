@@ -137,7 +137,7 @@
                 android:textSize="30dp" />
 
             <EditText
-                android:id="@+id/adet"
+                android:id="@+id/selladet"
                 android:layout_width="119dp"
                 android:layout_height="58dp"
                 android:layout_gravity="end"

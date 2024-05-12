@@ -39,7 +39,7 @@ class SellActivity : AppCompatActivity() {
         toplam_tutar_guncelle()
         database()
         binding.sell.isEnabled=false
-        binding.adet.requestFocus()
+        binding.selladet.requestFocus()
     }
 
     private fun binding(){
@@ -69,7 +69,7 @@ class SellActivity : AppCompatActivity() {
                             runOnUiThread {
                                 binding.sellPrice.text = price
 
-                                val adet = binding.adet.text.toString()
+                                val adet = binding.selladet.text.toString()
                                 var adet_int=adet.toIntOrNull()
                                 if (adet_int==null){
                                     adet_int=0
@@ -96,7 +96,7 @@ class SellActivity : AppCompatActivity() {
     }
 
     private fun toplam_tutar_guncelle(){
-        val editText = binding.adet
+        val editText = binding.selladet
 
         editText.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
@@ -111,7 +111,7 @@ class SellActivity : AppCompatActivity() {
             override fun afterTextChanged(s: Editable?) {
                 // Değişiklik yapıldıktan sonra yapılacak işlemi burada yapabilirsiniz
 
-                val adet = binding.adet.text.toString()
+                val adet = binding.selladet.text.toString()
                 var adet_int = adet.toIntOrNull()
                 if (adet_int==null){
                     adet_int=0
@@ -165,7 +165,7 @@ class SellActivity : AppCompatActivity() {
         val stockname = binding.name.text.toString()
         val symbol = binding.symbol.text.toString()
         val price = binding.sellPrice.text.toString().toDouble()
-        val shares = binding.adet.text.toString().toInt()
+        val shares = binding.selladet.text.toString().toInt()
 
         //Hissenin veri tabanında var mı kontrol eder
         val symbolExistsQuery = "SELECT 1 FROM table3 WHERE symbol='$symbol' LIMIT 1"
@@ -212,5 +212,9 @@ class SellActivity : AppCompatActivity() {
 
 
         }
+    }
+
+    fun geri(view:View){
+        onBackPressed()
     }
 }
