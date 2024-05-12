@@ -115,25 +115,27 @@ class BuyActivity : AppCompatActivity() {
             override fun afterTextChanged(s: Editable?) {
                 // Değişiklik yapıldıktan sonra yapılacak işlemi burada yapabilirsiniz
 
-
-                //Girilen adetin uygunluğunu kontrol edip buna göre butonun aktifliğini ayarlar
                 val adet = binding.adet.text.toString()
-                var adet_int = adet.toIntOrNull()
-                if (adet_int==null){
-                    adet_int=0
-                }
-                if (adet_int > 0){
-                    binding.buy.isEnabled = true
-                }else {
-                    binding.buy.isEnabled = false
-                }
+                var adet_int = adet.toIntOrNull() ?: 0
 
-                //alınacak toplam tutarı yazar
-                val price = binding.buyPrice.text.toString()
-                val price_dbl = price.toDouble()
-                val toplam_tutar = (price_dbl * adet_int)
+                val price = binding.buyPrice.text.toString().toDoubleOrNull() ?: 0.0
+                val toplam_tutar = (price * adet_int)
                 val formattedTutar = String.format(Locale.US, "%.2f", toplam_tutar)
                 binding.toplamTutar.text = "$$formattedTutar"
+
+                val bakiyeQuery = "SELECT * FROM testbakiye1"
+                val bakiyeCursor = dbsql.rawQuery(bakiyeQuery, null)
+                var bakiye = 0.00
+                if (bakiyeCursor.moveToFirst()) {
+                    bakiye = bakiyeCursor.getDouble(0)
+                }
+                bakiyeCursor.close()
+
+                if (toplam_tutar <= bakiye && adet_int > 0) {
+                    binding.buy.isEnabled = true
+                } else {
+                    binding.buy.isEnabled = false
+                }
             }
         })
     }
@@ -144,52 +146,71 @@ class BuyActivity : AppCompatActivity() {
     }
 
     @SuppressLint("Recycle")
-    fun satinAl(view: View){
+    fun satinAl(view: View) {
         val stockname = binding.name.text.toString()
         val symbol = binding.symbol.text.toString()
-        val price = binding.buyPrice.text.toString().toDouble()
-        val shares = binding.adet.text.toString().toInt()
+        val price = binding.buyPrice.text.toString().toDoubleOrNull() ?: 0.0
+        val shares = binding.adet.text.toString().toIntOrNull() ?: 0
 
-        //hissenin portföyde olup olmadığını kontrol eder
         val symbolExistsQuery = "SELECT 1 FROM table3 WHERE symbol='$symbol' LIMIT 1"
         val cursor = dbsql.rawQuery(symbolExistsQuery, null)
         val symbolExists = cursor.count > 0
         cursor.close()
 
         if (symbolExists) {
-            // Belirtilen sembol veritabanında bulunuyorise çalışır
-
-            //Eğer portföyde varsa ortalama fiyatı günceller ve ekleme yapar
             val oldPriceQuery = "SELECT buying_price,shares FROM table3 WHERE symbol='$symbol' LIMIT 1"
-            val cursorOldPrice = dbsql.rawQuery(oldPriceQuery,null)
+            val cursorOldPrice = dbsql.rawQuery(oldPriceQuery, null)
             cursorOldPrice.moveToFirst()
-            val eski_fiyat = cursorOldPrice.getDouble(0)
-            val eski_adet = cursorOldPrice.getInt(1)
-            val ortalamaFiyat = ((shares * price) + (eski_fiyat * eski_adet)) / (eski_adet + shares)
-            val toplamAdet = (eski_adet + shares)
-           val ekleQuery = "UPDATE table3 SET buying_price='$ortalamaFiyat', shares='$toplamAdet' WHERE symbol='$symbol' "
+            val eskiFiyat = cursorOldPrice.getDouble(0)
+            val eskiAdet = cursorOldPrice.getInt(1)
+            val ortalamaFiyat = ((shares * price) + (eskiFiyat * eskiAdet)) / (eskiAdet + shares)
+            val toplamAdet = (eskiAdet + shares)
+            val ekleQuery = "UPDATE table3 SET buying_price='$ortalamaFiyat', shares='$toplamAdet' WHERE symbol='$symbol'"
             dbsql.execSQL(ekleQuery)
 
 
-            Toast.makeText(this,"Satın Alma Başarılı",Toast.LENGTH_LONG).show()
+            val eskibakiyeQuery = "SELECT * FROM testbakiye1"
+            val eskibakiyeCursor = dbsql.rawQuery(eskibakiyeQuery, null)
+            var eskibakiye = 0.00
+            if (eskibakiyeCursor.moveToFirst()) {
+                eskibakiye = eskibakiyeCursor.getDouble(0)
+            }
+            eskibakiyeCursor.close()
+            val topTutar = binding.toplamTutar.text.toString()
+            val formatedtoplamtutar = topTutar.replace("$","")
+            val formatedtoplamtutar_dbl = formatedtoplamtutar.toDouble()
+            val yeniBakiye = (eskibakiye - formatedtoplamtutar_dbl)
+            val formattedYenibakiye = String.format(Locale.US, "%.2f", yeniBakiye).toDouble()
+            val bakiyeGuncelleQuery = "UPDATE testbakiye1 SET bakiye='$formattedYenibakiye'"
+            dbsql.execSQL(bakiyeGuncelleQuery)
+
+            Toast.makeText(this, "Satın Alma Başarılı", Toast.LENGTH_LONG).show()
             finish()
-            val goHome = Intent(this,MainActivity::class.java)
+            val goHome = Intent(this, MainActivity::class.java)
             startActivity(goHome)
-
-
-
         } else {
-            // Belirtilen sembol veritabanında bulunmuyorise çalışır
-            // Satın almayı veri tabanına kaydeder ve ana sayfaya döner
             val satinalQuery = "INSERT INTO table3 (stocks, symbol, buying_price, shares) VALUES ('$stockname', '$symbol', $price, $shares)"
             dbsql.execSQL(satinalQuery)
 
-            Toast.makeText(this,"Satın Alma Başarılı",Toast.LENGTH_LONG).show()
+            val eskibakiyeQuery = "SELECT * FROM testbakiye1"
+            val eskibakiyeCursor = dbsql.rawQuery(eskibakiyeQuery, null)
+            var eskibakiye = 0.00
+            if (eskibakiyeCursor.moveToFirst()) {
+                eskibakiye = eskibakiyeCursor.getDouble(0)
+            }
+            eskibakiyeCursor.close()
+            val topTutar = binding.toplamTutar.text.toString()
+            val formatedtoplamtutar = topTutar.replace("$","")
+            val formatedtoplamtutar_dbl = formatedtoplamtutar.toDouble()
+            val yeniBakiye = (eskibakiye - formatedtoplamtutar_dbl)
+            val formattedYenibakiye = String.format(Locale.US, "%.2f", yeniBakiye).toDouble()
+            val bakiyeGuncelleQuery = "UPDATE testbakiye1 SET bakiye='$formattedYenibakiye'"
+            dbsql.execSQL(bakiyeGuncelleQuery)
+
+            Toast.makeText(this, "Satın Alma Başarılı", Toast.LENGTH_LONG).show()
             finish()
-            val goHome = Intent(this,MainActivity::class.java)
+            val goHome = Intent(this, MainActivity::class.java)
             startActivity(goHome)
-
         }
-
     }
 }

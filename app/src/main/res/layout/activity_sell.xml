@@ -79,7 +79,8 @@
         app:layout_constraintBottom_toTopOf="@+id/buy"
         app:layout_constraintTop_toBottomOf="@+id/frameLayout11"
         app:layout_constraintVertical_bias="0.041"
-        tools:layout_editor_absoluteX="0dp">
+        tools:layout_editor_absoluteX="0dp"
+        tools:ignore="UnknownIdInLayout">
 
         <FrameLayout
             android:id="@+id/frameLayout3"

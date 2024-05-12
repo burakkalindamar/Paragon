@@ -189,6 +189,22 @@ class SellActivity : AppCompatActivity() {
             val satQuery = "UPDATE table3 SET shares='$yeniadet' WHERE symbol='$symbol'"
             dbsql.execSQL(satQuery)
 
+            val eskibakiyeQuery = "SELECT * FROM testbakiye1"
+            val eskibakiyeCursor = dbsql.rawQuery(eskibakiyeQuery, null)
+            var eskibakiye = 0.00
+            if (eskibakiyeCursor.moveToFirst()) {
+                eskibakiye = eskibakiyeCursor.getDouble(0)
+            }
+            eskibakiyeCursor.close()
+
+            val topTutar = binding.toplamTutar.text.toString()
+            val formatedtoplamtutar = topTutar.replace("$","")
+            val formatedtoplamtutar_dbl = formatedtoplamtutar.toDouble()
+            val yeniBakiye = (eskibakiye + formatedtoplamtutar_dbl)
+            val formattedYenibakiye = String.format(Locale.US, "%.2f", yeniBakiye).toDouble()
+            val bakiyeGuncelleQuery = "UPDATE testbakiye1 SET bakiye='$formattedYenibakiye'"
+            dbsql.execSQL(bakiyeGuncelleQuery)
+
             Toast.makeText(this,"Satma İşlemi Başarılı",Toast.LENGTH_LONG).show()
             finish()
             val goHome = Intent(this,MainActivity::class.java)

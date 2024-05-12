@@ -71,11 +71,28 @@ class MainActivity : AppCompatActivity() {
         setContentView(view)
     }
 
-    fun database(){
-        context=this
-        dbsql=context.openOrCreateDatabase("testdb",Context.MODE_PRIVATE,null)
+    fun database() {
+        context = this
+        dbsql = context.openOrCreateDatabase("testdb", Context.MODE_PRIVATE, null)
         dbsql.execSQL("CREATE TABLE IF NOT EXISTS table3(stocks TEXT, symbol TEXT, buying_price REAL, shares INTEGER)")
+        dbsql.execSQL("CREATE TABLE IF NOT EXISTS testbakiye1 (bakiye REAL)")
+        val bakiye_kontrolQuery = "SELECT bakiye FROM testbakiye1"
+        val bakiyeCursor = dbsql.rawQuery(bakiye_kontrolQuery, null)
+        var bakiye: Double = 0.0
+
+        if (bakiyeCursor.moveToFirst()) {
+            bakiye = bakiyeCursor.getDouble(0)
+        } else {
+            // Tabloda veri yok, yeni bir kayıt ekleyin
+            val bakiye_ekleQuery = "INSERT INTO testbakiye1 (bakiye) VALUES (50000.00)"
+            dbsql.execSQL(bakiye_ekleQuery)
+            bakiye = 50000.00 // Yeni değeri atayın
+        }
+        binding.bakiye.text = "$"+bakiye.toString()
+        bakiyeCursor.close()
     }
+
+
 
     @SuppressLint("Recycle")
     fun portfoyListele() {
@@ -91,6 +108,7 @@ class MainActivity : AppCompatActivity() {
         val portfoyQuery = "SELECT * FROM table3"
         val porfoyCursor = dbsql.rawQuery(portfoyQuery, null)
         var toplamdeger = 0.00
+        binding.deger.text = "$0.00"
 
         while (porfoyCursor.moveToNext()) {
             val company = porfoyCursor.getString(0)
@@ -128,8 +146,14 @@ class MainActivity : AppCompatActivity() {
 
     fun veritabanitemizle(){
         //Bütün adetleri satılan hisseleri portföyden siler
-        val silQuery = "DELETE FROM table3 WHERE shares=0"
-        dbsql.execSQL(silQuery)
+        val portfoyQuery = "SELECT * FROM table3"
+        val portfoyCursor = dbsql.rawQuery(portfoyQuery,null)
+
+        if(portfoyCursor.moveToFirst()){
+            val silQuery = "DELETE FROM table3 WHERE shares=0"
+            dbsql.execSQL(silQuery)
+        }
+
     }
 
 }

@@ -85,27 +85,82 @@
             android:layout_height="match_parent"
             android:orientation="vertical">
 
-            <TextView
-                android:id="@+id/textView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_margin="30dp"
-                android:fontFamily="sans-serif-condensed"
-                android:text="Toplam Bakiye"
-                android:textColor="@color/black"
-                android:textSize="24sp" />
 
-            <TextView
-                android:id="@+id/deger"
-                android:layout_width="wrap_content"
+            <LinearLayout
+                android:padding="10dp"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="30dp"
-                android:layout_marginTop="-20dp"
-                android:fontFamily="sans-serif-condensed"
-                android:text="$1463.86"
-                android:textColor="@color/black"
-                android:textSize="30sp"
-                android:textStyle="bold" />
+                android:orientation="horizontal"
+                android:background="@drawable/portfoyname">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:fontFamily="sans-serif-condensed"
+                    android:text="Nakit Bakiye :"
+                    android:textColor="@color/blue"
+                    android:textSize="15dp">
+
+                </TextView>
+
+                <TextView
+                    android:id="@+id/bakiye"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="$2342.99"
+                    android:gravity="center"
+                    android:fontFamily="sans-serif-condensed"
+                    android:textColor="@color/black"
+                    android:textSize="20dp">
+
+                </TextView>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:background="@drawable/portfoyname"
+                android:layout_marginTop="5dp">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Portföy Değeri"
+                    android:gravity="center"
+                    android:textColor="@color/black"
+                    android:fontFamily="sans-serif-condensed"
+                    android:textSize="18dp"
+                    android:padding="8dp">
+
+                </TextView>
+
+                <FrameLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="5dp"
+                    android:background="@color/white">
+
+                </FrameLayout>
+
+                <TextView
+                    android:id="@+id/deger"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text=""
+                    android:gravity="center"
+                    android:textColor="@color/black"
+                    android:fontFamily="sans-serif-condensed"
+                    android:textSize="25dp"
+                    android:padding="5dp">
+
+                </TextView>
+
+            </LinearLayout>
+
 
         </LinearLayout>
     </FrameLayout>
@@ -113,17 +168,19 @@
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="0dp"
+        android:layout_marginTop="5dp"
         app:layout_constraintBottom_toTopOf="@+id/linearLayout"
-        app:layout_constraintTop_toBottomOf="@+id/frameLayout6"
-        tools:ignore="MissingConstraints">
+        app:layout_constraintTop_toBottomOf="@+id/frameLayout7"
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteX="0dp">
 
         <LinearLayout
-            android:layout_marginRight="20dp"
-            android:layout_marginLeft="20dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginBottom="10dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginBottom="10dp"
             android:orientation="vertical">
 
             <androidx.recyclerview.widget.RecyclerView
@@ -140,6 +197,29 @@
         </LinearLayout>
     </ScrollView>
 
+    <FrameLayout
+        android:id="@+id/frameLayout7"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginRight="10dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/frameLayout6">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/radius"
+            android:gravity="center"
+            android:text="PORTFÖYÜM"
+            android:textColor="@color/blue"
+            android:textSize="20dp">
+
+        </TextView>
+
+    </FrameLayout>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
