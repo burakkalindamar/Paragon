@@ -105,7 +105,7 @@
         android:id="@+id/linearLayout4"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="20dp"
         android:layout_marginRight="10dp"
         android:layout_marginLeft="10dp"
         android:orientation="horizontal"
@@ -113,7 +113,7 @@
         tools:layout_editor_absoluteX="1dp">
 
         <LinearLayout
-            android:layout_marginRight="2dp"
+            android:layout_marginEnd="2dp"
             android:background="@drawable/radius"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -210,7 +210,6 @@
 
                 </TextView>
             </LinearLayout>
-
         </LinearLayout>
 
         <LinearLayout
@@ -310,10 +309,7 @@
 
                 </TextView>
             </LinearLayout>
-
-
         </LinearLayout>
-
     </LinearLayout>
 
     <LinearLayout
@@ -353,15 +349,12 @@
             android:text="Al"
             android:onClick="go_buyActivity"
             android:textSize="30dp"
-            android:background="@drawable/buybutton"
-            />
+            android:background="@drawable/buybutton"/>
     </LinearLayout>
-
-
 
     <TextView
         android:id="@+id/textView2"
-        android:layout_marginTop="-55dp"
+        android:layout_marginTop="-35dp"
         android:textSize="10dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

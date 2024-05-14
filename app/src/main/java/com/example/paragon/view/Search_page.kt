@@ -37,9 +37,19 @@ class Search_page : AppCompatActivity() {
         recyclerView()
     }
 
+    override fun onBackPressed() {
+        super.onBackPressed()
+        // Geri tuşuna basıldığında yapılacak işlemler
+        val intent = Intent(this, MainActivity::class.java)
+        startActivity(intent)
+        finish() // İsterseniz bu sayfayı sonlandırabilirsiniz, isteğe bağlı.
+    }
+
+
     fun go_balance(view: View){
         val go_balance = Intent(this, MainActivity::class.java)
         startActivity(go_balance)
+        finish()
     } // anasayfaya gider
 
 

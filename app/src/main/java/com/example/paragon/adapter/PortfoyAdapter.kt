@@ -23,6 +23,7 @@ class PortfoyAdapter(private val portfoylist:ArrayList<PortfoyModel>) :
         val shares: TextView = itemView.findViewById(R.id.shares)
         val toplam_tutar: TextView = itemView.findViewById(R.id.portfoytoplamtutar)
         val degisim: TextView = itemView.findViewById(R.id.degisim)
+        val maliyet: TextView = itemView.findViewById(R.id.maliyet)
 
     }
 
@@ -41,6 +42,7 @@ class PortfoyAdapter(private val portfoylist:ArrayList<PortfoyModel>) :
         holder.name.text = portfoylist[position].company
         holder.price.text = "$" + portfoylist[position].anlik_fiyat
         holder.shares.text = portfoylist[position].shares
+        holder.maliyet.text = "$" + portfoylist[position].price
 
         val anlikFiyat = portfoylist[position].anlik_fiyat.toDoubleOrNull()
         val shares = portfoylist[position].shares.toIntOrNull()

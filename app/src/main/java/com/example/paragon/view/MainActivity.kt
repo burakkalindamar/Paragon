@@ -27,6 +27,8 @@ class MainActivity : AppCompatActivity() {
     private val db = Firebase.firestore
     private var portfoylist = ArrayList<PortfoyModel>()
     private lateinit var PortfoyAdapter: PortfoyAdapter
+    private var backPressedTime: Long = 0
+    private lateinit var toast: Toast
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -47,6 +49,18 @@ class MainActivity : AppCompatActivity() {
         recyclerView()
     }
 
+    override fun onBackPressed() {
+        if (backPressedTime + 2000 > System.currentTimeMillis()) {
+            // İki kez arka arkaya basıldığında zaman dilimini kontrol ediyoruz
+            super.onBackPressed()
+            return
+        } else {
+            // İlk kez geri tuşuna basıldığında
+            toast = Toast.makeText(baseContext, "Çıkış yapmak için tekrar basın", Toast.LENGTH_SHORT)
+            toast.show()
+        }
+        backPressedTime = System.currentTimeMillis()
+    }
     private fun recyclerView() {
         val recyclerView = binding.portfoyum
         val layoutManager = LinearLayoutManager(this)
@@ -55,14 +69,15 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun go_search(view: View){
+        finish()
         val go_search = Intent(this, Search_page::class.java)
         startActivity(go_search)
     }
 
     fun refresh_balance(view: View){
-        finish()
         val refresh_balance = Intent(this, MainActivity::class.java)
         startActivity(refresh_balance)
+        finish()
     }
 
     fun binding(){
