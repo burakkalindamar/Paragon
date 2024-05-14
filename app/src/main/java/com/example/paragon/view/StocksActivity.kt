@@ -13,11 +13,13 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.example.paragon.R
 import com.example.paragon.databinding.ActivityStocksBinding
+import com.example.paragon.model.StocksModel
 import com.github.mikephil.charting.data.Entry
 import com.github.mikephil.charting.data.LineData
 import com.github.mikephil.charting.data.LineDataSet
 import com.google.firebase.Firebase
 import com.google.firebase.firestore.firestore
+import java.util.Locale
 
 
 class StocksActivity : AppCompatActivity() {
@@ -35,7 +37,8 @@ class StocksActivity : AppCompatActivity() {
             insets
         }
         line_chart()
-        verileriYaz()
+        //verileriYaz()
+        verileri_cek_yaz()
     }
 
     fun binding(){
@@ -85,7 +88,7 @@ class StocksActivity : AppCompatActivity() {
                     binding.lineChart.data = hatVerisi
 
                 // Animasyonlar
-                binding.lineChart.animateY(2000)
+                binding.lineChart.animateX(1000)
 
                 // Gereksiz Öğelerin Kaldırılması
                 binding.lineChart.setDrawGridBackground(false)
@@ -108,60 +111,90 @@ class StocksActivity : AppCompatActivity() {
             }
         }
 
+    @SuppressLint("SetTextI18n")
+    fun verileri_cek_yaz() {
+        val symbol = intent.getStringExtra("symbol")
+        var price: String
+        var company: String
+        var opening_price: String
+        var daily_highest: String
+        var daily_lowest: String
+        var highest_price: String
+        var lowest_price: String
+        var pe_ratio: String
 
-        @SuppressLint("SetTextI18n")
-        fun verileriYaz() {
-            val intent = intent
-            val dolar = "$"
-            val yuzde = "%"
+        db.collection("Stocks").whereEqualTo("symbol", symbol).get()
+            .addOnSuccessListener { documents ->
+                if (!documents.isEmpty) {
+                    val stocks = documents.documents
 
-            val company = intent.getStringExtra("company")
-            binding.stockname.text = company.toString()
+                    for (stock in stocks) {
+                        price = stock.getString("price") ?: ""
+                        company = stock.getString("company") ?: ""
+                        opening_price = stock.getString("opening_price") ?: ""
+                        daily_highest = stock.getString("daily_highest") ?: ""
+                        daily_lowest = stock.getString("daily_lowest") ?: ""
+                        highest_price = stock.getString("highest_price") ?: ""
+                        lowest_price = stock.getString("lowest_price") ?: ""
+                        pe_ratio = stock.getString("pe_ratio") ?: ""
 
-            val price = intent.getStringExtra("price")
-            binding.stockPrice.text = dolar + price.toString()
+                        val change = degisim_hesapla(price, opening_price)
+                        binding.stockname.text = company
 
-            val dailyChange = intent.getStringExtra("dailyChange")
-            binding.stockDailyChange.text = dailyChange.toString() + yuzde
+                        binding.stockPrice.text = "$$price"
 
-            val dailyChangeDouble = dailyChange!!.toDouble()
+                        binding.stockDailyChange.text = "$change%"
+                        val dailyChangeDouble = change.toDouble()
+                        if (dailyChangeDouble > 0) {
+                            binding.stockDailyChange.setTextColor(Color.parseColor("#4CAF50")) //YEŞİL
+                        } else if (dailyChangeDouble < 0) {
+                            binding.stockDailyChange.setTextColor(Color.parseColor("#F44336")) //KIRMIZI
+                        } else {
+                            binding.stockDailyChange.setTextColor(Color.parseColor("#9A9A9A")) //GRİ
+                        }
 
-            if (dailyChangeDouble > 0) {
-                binding.stockDailyChange.setTextColor(Color.parseColor("#4CAF50")) //YEŞİL
-            } else if (dailyChangeDouble < 0) {
-                binding.stockDailyChange.setTextColor(Color.parseColor("#F44336")) //KIRMIZI
-            } else {
-                binding.stockDailyChange.setTextColor(Color.parseColor("#9A9A9A")) //GRİ
+                        binding.stocksymbol.text = symbol
+
+                        binding.openingPrice.text = "$$opening_price"
+
+                        binding.peRatio.text = pe_ratio
+
+                        binding.dailyHighest.text = "$$daily_highest"
+
+                        binding.dailyLowest.text = "$$daily_lowest"
+
+                        binding.highestPrice.text = "$$highest_price"
+
+                        binding.lowestPrice.text = "$$lowest_price"
+
+
+                    }
+                }
             }
+    }
 
-            val openingPrice = intent.getStringExtra("openingPrice")
-            binding.openingPrice.text = dolar + openingPrice.toString()
 
-            val peRatio = intent.getStringExtra("peRatio")
-            binding.peRatio.text = peRatio.toString()
+    fun degisim_hesapla(price: String, opening_price: String): String {
+        val x: String = price.replace(",", ".")
+        val y: String = opening_price.replace(",", ".")
 
-            val dailyHighest = intent.getStringExtra("dailyHighest")
-            binding.dailyHighest.text = dolar + dailyHighest.toString()
+        val double_price = x.toDoubleOrNull() ?: return "Geçersiz fiyat formatı"
+        val double_opening_price = y.toDoubleOrNull() ?: return "Geçersiz açılış fiyatı formatı"
 
-            val dailyLowest = intent.getStringExtra("dailyLowest")
-            binding.dailyLowest.text = dolar + dailyLowest.toString()
+        val a = double_price - double_opening_price
+        val b = a / double_price
+        val change = b * 100
 
-            val highestPrice = intent.getStringExtra("highestPrice")
-            binding.highestPrice.text = dolar + highestPrice.toString()
+        //tr formatında nokta yerinie virgül eklendiği için double çevrilirken hata veriyor.
+        val formattedChange = String.format(Locale.US, "%.2f", change)
+        return formattedChange
+    } //günlük fiyat değişimini hesaplar
 
-            val lowestPrice = intent.getStringExtra("lowestPrice")
-            binding.lowestPrice.text = dolar + lowestPrice.toString()
+    fun geri(view: View) {
+        onBackPressed()
+    }
 
-            val symbol = intent.getStringExtra("symbol")
-            binding.stocksymbol.text = symbol.toString()
-
-        }
-
-        fun geri(view: View) {
-            onBackPressed()
-        }
-
-        fun go_sellActivity(view: View) {
+    fun go_sellActivity(view: View) {
             val symbol = intent.getStringExtra("symbol")
             val company = intent.getStringExtra("company")
             val go_sellActivity = Intent(this, SellActivity::class.java)
@@ -170,7 +203,7 @@ class StocksActivity : AppCompatActivity() {
             startActivity(go_sellActivity)
         }
 
-        fun go_buyActivity(view: View) {
+    fun go_buyActivity(view: View) {
             val symbol = intent.getStringExtra("symbol")
             val company = intent.getStringExtra("company")
             val go_buyActivity = Intent(this, BuyActivity::class.java)

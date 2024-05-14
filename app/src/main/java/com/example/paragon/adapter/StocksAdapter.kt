@@ -53,6 +53,7 @@ class StocksAdapter(private val stocklist:ArrayList<StocksModel>) : RecyclerView
         holder.itemView.setOnClickListener {
             val intent = Intent(holder.itemView.context, StocksActivity::class.java)
 
+            /*
             intent.putExtra("company",stocklist[position].company)
             intent.putExtra("price",stocklist[position].price)
             intent.putExtra("dailyChange",stocklist[position].change)
@@ -64,7 +65,7 @@ class StocksAdapter(private val stocklist:ArrayList<StocksModel>) : RecyclerView
 
             intent.putExtra("highestPrice",stocklist[position].highest_price)
             intent.putExtra("lowestPrice",stocklist[position].lowest_price)
-
+            */
             intent.putExtra("symbol",stocklist[position].symbol)
 
 

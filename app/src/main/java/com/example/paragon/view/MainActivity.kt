@@ -71,6 +71,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(view)
     }
 
+    @SuppressLint("SetTextI18n")
     fun database() {
         context = this
         dbsql = context.openOrCreateDatabase("testdb", Context.MODE_PRIVATE, null)
@@ -88,13 +89,13 @@ class MainActivity : AppCompatActivity() {
             dbsql.execSQL(bakiye_ekleQuery)
             bakiye = 50000.00 // Yeni değeri atayın
         }
-        binding.bakiye.text = "$"+bakiye.toString()
+        binding.bakiye.text = "$$bakiye"
         bakiyeCursor.close()
     }
 
 
 
-    @SuppressLint("Recycle")
+    @SuppressLint("Recycle", "SetTextI18n", "NotifyDataSetChanged")
     fun portfoyListele() {
         //portföydeki toplam hisse sayısını alır
         val countQuery = "SELECT COUNT(*) FROM table3"
@@ -127,7 +128,7 @@ class MainActivity : AppCompatActivity() {
                         val shares_dbl = shares.toDoubleOrNull() ?: 0.0
                         val deger = anlik * shares_dbl
 
-                        val veri = PortfoyModel(company, anlik_fiyat, price, shares)
+                        val veri = PortfoyModel(company, anlik_fiyat, price, shares,symbol)
                         portfoylist.add(veri)
                         PortfoyAdapter.notifyDataSetChanged()
 
@@ -144,6 +145,7 @@ class MainActivity : AppCompatActivity() {
         porfoyCursor.close()
     }
 
+    @SuppressLint("Recycle")
     fun veritabanitemizle(){
         //Bütün adetleri satılan hisseleri portföyden siler
         val portfoyQuery = "SELECT * FROM table3"

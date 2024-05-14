@@ -1,6 +1,7 @@
 package com.example.paragon.adapter
 
 import android.annotation.SuppressLint
+import android.content.Intent
 import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.View
@@ -9,6 +10,7 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.paragon.R
 import com.example.paragon.model.PortfoyModel
+import com.example.paragon.view.StocksActivity
 import java.util.Locale
 
 class PortfoyAdapter(private val portfoylist:ArrayList<PortfoyModel>) :
@@ -71,6 +73,15 @@ class PortfoyAdapter(private val portfoylist:ArrayList<PortfoyModel>) :
             holder.toplam_tutar.text = "0.00"
             holder.degisim.text = "0.00"
         }
+
+        holder.itemView.setOnClickListener {
+            val intent = Intent(holder.itemView.context, StocksActivity::class.java)
+            intent.putExtra("symbol",portfoylist[position].symbol)
+            holder.itemView.context.startActivity(intent)
+
+        }
+
+
     }
 
 
