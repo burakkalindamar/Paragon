@@ -11,6 +11,7 @@ import android.view.View
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.example.paragon.R
@@ -114,11 +115,12 @@ class SellActivity : AppCompatActivity() {
                 val adet = binding.selladet.text.toString()
                 var adet_int = adet.toIntOrNull()
                 if (adet_int==null){
+                    binding.mevcutadet.setTextColor(ContextCompat.getColor(context, R.color.grey))
                     adet_int=0
                 }
                 //Satılacak adet sayısını kontrol eder
                 val symbol = binding.symbol.text.toString()
-                val adetQuery = "SELECT shares FROM table3 WHERE symbol='$symbol' LIMIT 1"
+                val adetQuery = "SELECT shares FROM portfoy WHERE symbol='$symbol' LIMIT 1"
                 val adetCursor = dbsql.rawQuery(adetQuery,null)
                 var mevcutadet = 0
 
@@ -127,10 +129,14 @@ class SellActivity : AppCompatActivity() {
                 }
                 adetCursor.close()
 
-                if (adet_int > 0 && adet_int <= mevcutadet){
-                    binding.sell.isEnabled = true
+                if (adet_int <= mevcutadet){
+                    if (adet_int > 0) {
+                        binding.sell.isEnabled = true
+                        binding.mevcutadet.setTextColor(ContextCompat.getColor(context, R.color.green))
+                    }
                 }else
                 {
+                    binding.mevcutadet.setTextColor(ContextCompat.getColor(context, R.color.red))
                     binding.sell.isEnabled = false
                 }
 
@@ -144,12 +150,13 @@ class SellActivity : AppCompatActivity() {
         })
     }
 
+    @SuppressLint("SetTextI18n")
     private fun database() {
             context = this
             dbsql = context.openOrCreateDatabase("testdb", Context.MODE_PRIVATE, null)
             //Satılacak hissenin adet sayısını satış sayfasına yazar
             val symbol = binding.symbol.text.toString()
-            val adetQuery = "SELECT shares FROM table3 WHERE symbol='$symbol' LIMIT 1"
+            val adetQuery = "SELECT shares FROM portfoy WHERE symbol='$symbol' LIMIT 1"
             val adetCursor = dbsql.rawQuery(adetQuery, null)
             if (adetCursor.moveToFirst()) {
                 val adet = adetCursor.getInt(0)
@@ -168,7 +175,7 @@ class SellActivity : AppCompatActivity() {
         val shares = binding.selladet.text.toString().toInt()
 
         //Hissenin veri tabanında var mı kontrol eder
-        val symbolExistsQuery = "SELECT 1 FROM table3 WHERE symbol='$symbol' LIMIT 1"
+        val symbolExistsQuery = "SELECT 1 FROM portfoy WHERE symbol='$symbol' LIMIT 1"
         val cursor = dbsql.rawQuery(symbolExistsQuery, null)
         val symbolExists = cursor.count > 0
         cursor.close()
@@ -176,7 +183,7 @@ class SellActivity : AppCompatActivity() {
         if (symbolExists) {
             // Belirtilen sembol veritabanında bulunuyorise çalışır
             // Hissenin satışını yapar ve adet sayısını günceller
-            val adetQuery = "SELECT shares FROM table3 WHERE symbol='$symbol' LIMIT 1"
+            val adetQuery = "SELECT shares FROM portfoy WHERE symbol='$symbol' LIMIT 1"
             val adetCursor = dbsql.rawQuery(adetQuery,null)
             var adet = 0
 
@@ -186,10 +193,10 @@ class SellActivity : AppCompatActivity() {
 
             val yeniadet = (adet -shares)
 
-            val satQuery = "UPDATE table3 SET shares='$yeniadet' WHERE symbol='$symbol'"
+            val satQuery = "UPDATE portfoy SET shares='$yeniadet' WHERE symbol='$symbol'"
             dbsql.execSQL(satQuery)
 
-            val eskibakiyeQuery = "SELECT * FROM testbakiye1"
+            val eskibakiyeQuery = "SELECT * FROM bakiye"
             val eskibakiyeCursor = dbsql.rawQuery(eskibakiyeQuery, null)
             var eskibakiye = 0.00
             if (eskibakiyeCursor.moveToFirst()) {
@@ -202,7 +209,7 @@ class SellActivity : AppCompatActivity() {
             val formatedtoplamtutar_dbl = formatedtoplamtutar.toDouble()
             val yeniBakiye = (eskibakiye + formatedtoplamtutar_dbl)
             val formattedYenibakiye = String.format(Locale.US, "%.2f", yeniBakiye).toDouble()
-            val bakiyeGuncelleQuery = "UPDATE testbakiye1 SET bakiye='$formattedYenibakiye'"
+            val bakiyeGuncelleQuery = "UPDATE bakiye SET bakiye='$formattedYenibakiye'"
             dbsql.execSQL(bakiyeGuncelleQuery)
 
             Toast.makeText(this,"Satma İşlemi Başarılı",Toast.LENGTH_LONG).show()

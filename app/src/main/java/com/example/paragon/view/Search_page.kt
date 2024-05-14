@@ -42,11 +42,7 @@ class Search_page : AppCompatActivity() {
         startActivity(go_balance)
     } // anasayfaya gider
 
-    fun refresh_search(view: View){
-        finish()
-        val refresh_search = Intent(this, Search_page::class.java)
-        startActivity(refresh_search)
-    } //hisse sayfasını yeniler
+
 
     fun binding(){
         binding=ActivitySearchPageBinding.inflate(layoutInflater)

@@ -40,8 +40,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:background="@color/white"
-            android:onClick="refresh_balance"
+            android:background="#263A3A3A"
             app:srcCompat="@drawable/baseline_account_balance_wallet_24" />
 
     </LinearLayout>
@@ -65,6 +64,17 @@
             android:fontFamily="sans-serif-condensed"
             android:text="PORTFÖYÜM"
             android:textSize="24sp" />
+
+        <ImageButton
+            android:id="@+id/imageButton2"
+            android:layout_width="80dp"
+            android:background="@color/white"
+            android:layout_gravity="end"
+            android:layout_height="match_parent"
+            app:srcCompat="@drawable/baseline_refresh_24"
+            android:onClick="refresh_balance"/>
+
+
     </FrameLayout>
 
     <FrameLayout
@@ -188,7 +198,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:clipToPadding="false"
-                android:paddingTop="5dp"
                 android:paddingBottom="10dp"
                 app:layout_constraintBottom_toTopOf="@+id/linearLayout"
                 app:layout_constraintTop_toBottomOf="@+id/frameLayout6"

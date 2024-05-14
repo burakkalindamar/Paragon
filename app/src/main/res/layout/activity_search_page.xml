@@ -42,9 +42,8 @@
             android:id="@+id/search_search_button"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:background="#263A3A3A"
             android:layout_weight="1"
-            android:background="@color/white"
-            android:onClick="refresh_search"
             app:srcCompat="@drawable/baseline_search_24" />
 
         <ImageButton

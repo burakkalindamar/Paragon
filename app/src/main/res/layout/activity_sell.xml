@@ -198,6 +198,7 @@
         android:layout_marginBottom="20dp"
         android:fontFamily="sans-serif-condensed"
         android:text="TextView"
+        android:textColor="@color/grey"
         app:layout_constraintBottom_toTopOf="@+id/sell"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.501"

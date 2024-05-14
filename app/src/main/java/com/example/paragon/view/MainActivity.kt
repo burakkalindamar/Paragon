@@ -75,9 +75,9 @@ class MainActivity : AppCompatActivity() {
     fun database() {
         context = this
         dbsql = context.openOrCreateDatabase("testdb", Context.MODE_PRIVATE, null)
-        dbsql.execSQL("CREATE TABLE IF NOT EXISTS table3(stocks TEXT, symbol TEXT, buying_price REAL, shares INTEGER)")
-        dbsql.execSQL("CREATE TABLE IF NOT EXISTS testbakiye1 (bakiye REAL)")
-        val bakiye_kontrolQuery = "SELECT bakiye FROM testbakiye1"
+        dbsql.execSQL("CREATE TABLE IF NOT EXISTS portfoy(stocks TEXT, symbol TEXT, buying_price REAL, shares INTEGER)")
+        dbsql.execSQL("CREATE TABLE IF NOT EXISTS bakiye (bakiye REAL)")
+        val bakiye_kontrolQuery = "SELECT bakiye FROM bakiye"
         val bakiyeCursor = dbsql.rawQuery(bakiye_kontrolQuery, null)
         var bakiye: Double = 0.0
 
@@ -85,7 +85,7 @@ class MainActivity : AppCompatActivity() {
             bakiye = bakiyeCursor.getDouble(0)
         } else {
             // Tabloda veri yok, yeni bir kayıt ekleyin
-            val bakiye_ekleQuery = "INSERT INTO testbakiye1 (bakiye) VALUES (50000.00)"
+            val bakiye_ekleQuery = "INSERT INTO bakiye (bakiye) VALUES (50000.00)"
             dbsql.execSQL(bakiye_ekleQuery)
             bakiye = 50000.00 // Yeni değeri atayın
         }
@@ -98,7 +98,7 @@ class MainActivity : AppCompatActivity() {
     @SuppressLint("Recycle", "SetTextI18n", "NotifyDataSetChanged")
     fun portfoyListele() {
         //portföydeki toplam hisse sayısını alır
-        val countQuery = "SELECT COUNT(*) FROM table3"
+        val countQuery = "SELECT COUNT(*) FROM portfoy"
         val countCursor = dbsql.rawQuery(countQuery, null)
         var toplam = 0
         if (countCursor.moveToFirst()) {
@@ -106,7 +106,7 @@ class MainActivity : AppCompatActivity() {
         }
         countCursor.close()
 
-        val portfoyQuery = "SELECT * FROM table3"
+        val portfoyQuery = "SELECT * FROM portfoy"
         val porfoyCursor = dbsql.rawQuery(portfoyQuery, null)
         var toplamdeger = 0.00
         binding.deger.text = "$0.00"
@@ -148,11 +148,11 @@ class MainActivity : AppCompatActivity() {
     @SuppressLint("Recycle")
     fun veritabanitemizle(){
         //Bütün adetleri satılan hisseleri portföyden siler
-        val portfoyQuery = "SELECT * FROM table3"
+        val portfoyQuery = "SELECT * FROM portfoy"
         val portfoyCursor = dbsql.rawQuery(portfoyQuery,null)
 
         if(portfoyCursor.moveToFirst()){
-            val silQuery = "DELETE FROM table3 WHERE shares=0"
+            val silQuery = "DELETE FROM portfoy WHERE shares=0"
             dbsql.execSQL(silQuery)
         }
 

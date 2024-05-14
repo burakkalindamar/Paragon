@@ -87,8 +87,7 @@ class StocksActivity : AppCompatActivity() {
                     // Hat grafiğini görüntülemek için kullanılan görünüm referansı
                     binding.lineChart.data = hatVerisi
 
-                // Animasyonlar
-                binding.lineChart.animateX(1000)
+
 
                 // Gereksiz Öğelerin Kaldırılması
                 binding.lineChart.setDrawGridBackground(false)

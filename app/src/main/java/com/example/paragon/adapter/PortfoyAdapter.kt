@@ -77,6 +77,7 @@ class PortfoyAdapter(private val portfoylist:ArrayList<PortfoyModel>) :
         holder.itemView.setOnClickListener {
             val intent = Intent(holder.itemView.context, StocksActivity::class.java)
             intent.putExtra("symbol",portfoylist[position].symbol)
+            intent.putExtra("company",portfoylist[position].company)
             holder.itemView.context.startActivity(intent)
 
         }

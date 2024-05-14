@@ -4,6 +4,7 @@ import android.annotation.SuppressLint
 import android.content.Context
 import android.content.Intent
 import android.database.sqlite.SQLiteDatabase
+import android.graphics.Color
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
@@ -11,6 +12,7 @@ import android.view.View
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.example.paragon.R
@@ -72,7 +74,7 @@ class BuyActivity : AppCompatActivity() {
 
                             // UI güncelleme işlemi ana thread üzerinde gerçekleşmeli
                             runOnUiThread {
-                                binding.buyPrice.text = price
+                                binding.buyPrice.text = "$$price"
 
                                 val adet = binding.adet.text.toString()
                                 var adet_int=adet.toIntOrNull()
@@ -116,14 +118,22 @@ class BuyActivity : AppCompatActivity() {
                 // Değişiklik yapıldıktan sonra yapılacak işlemi burada yapabilirsiniz
 
                 val adet = binding.adet.text.toString()
-                var adet_int = adet.toIntOrNull() ?: 0
+                var adet_int = adet.toIntOrNull()
+                if (adet_int==null){
+                    binding.mevcutbakiye.setTextColor(ContextCompat.getColor(context, R.color.grey))
+                    adet_int=0
+                }
 
-                val price = binding.buyPrice.text.toString().toDoubleOrNull() ?: 0.0
+
+                val price_string = binding.buyPrice.text.toString()
+                val price = price_string.replace("$","").toDoubleOrNull()?:0.00
+
+
                 val toplam_tutar = (price * adet_int)
                 val formattedTutar = String.format(Locale.US, "%.2f", toplam_tutar)
                 binding.toplamTutar.text = "$$formattedTutar"
 
-                val bakiyeQuery = "SELECT * FROM testbakiye1"
+                val bakiyeQuery = "SELECT * FROM bakiye"
                 val bakiyeCursor = dbsql.rawQuery(bakiyeQuery, null)
                 var bakiye = 0.00
                 if (bakiyeCursor.moveToFirst()) {
@@ -131,11 +141,16 @@ class BuyActivity : AppCompatActivity() {
                 }
                 bakiyeCursor.close()
 
-                if (toplam_tutar <= bakiye && adet_int > 0) {
-                    binding.buy.isEnabled = true
-                } else {
+                if (toplam_tutar <= bakiye) {
+                    if (adet_int>0) {
+                        binding.mevcutbakiye.setTextColor(ContextCompat.getColor(context, R.color.green))
+                        binding.buy.isEnabled = true
+                    }
+                }else{
+                    binding.mevcutbakiye.setTextColor(ContextCompat.getColor(context, R.color.red))
                     binding.buy.isEnabled = false
                 }
+
             }
         })
     }
@@ -143,7 +158,7 @@ class BuyActivity : AppCompatActivity() {
     fun database(){
         context=this
         dbsql=context.openOrCreateDatabase("testdb",Context.MODE_PRIVATE,null)
-        val bakiyeQuery = "SELECT * FROM testbakiye1"
+        val bakiyeQuery = "SELECT * FROM bakiye"
         val bakiyeCursor = dbsql.rawQuery(bakiyeQuery, null)
         var bakiye = 0.00
         if (bakiyeCursor.moveToFirst()) {
@@ -157,29 +172,31 @@ class BuyActivity : AppCompatActivity() {
     fun satinAl(view: View) {
         val stockname = binding.name.text.toString()
         val symbol = binding.symbol.text.toString()
-        val price = binding.buyPrice.text.toString().toDoubleOrNull() ?: 0.0
+        val alisfiyatistr = binding.buyPrice.text.toString()
+        val alisfiyati = alisfiyatistr.replace("$","").toDouble()
         val shares = binding.adet.text.toString().toIntOrNull() ?: 0
 
-        val symbolExistsQuery = "SELECT 1 FROM table3 WHERE symbol='$symbol' LIMIT 1"
+        //hissenin var olup olmadığına bak
+        val symbolExistsQuery = "SELECT 1 FROM portfoy WHERE symbol='$symbol' LIMIT 1"
         val cursor = dbsql.rawQuery(symbolExistsQuery, null)
         val symbolExists = cursor.count > 0
         cursor.close()
 
         if (symbolExists) {
-            val oldPriceQuery = "SELECT buying_price,shares FROM table3 WHERE symbol='$symbol' LIMIT 1"
+            //varsa ekleme yap
+            val oldPriceQuery = "SELECT buying_price,shares FROM portfoy WHERE symbol='$symbol' LIMIT 1"
             val cursorOldPrice = dbsql.rawQuery(oldPriceQuery, null)
             cursorOldPrice.moveToFirst()
             val eskiFiyat = cursorOldPrice.getDouble(0)
             val eskiAdet = cursorOldPrice.getInt(1)
-            val ortalamaFiyat = ((shares * price) + (eskiFiyat * eskiAdet)) / (eskiAdet + shares)
+            val ortalamaFiyat = ((shares * alisfiyati) + (eskiFiyat * eskiAdet)) / (eskiAdet + shares)
             val toplamAdet = (eskiAdet + shares)
-            val ekleQuery = "UPDATE table3 SET buying_price='$ortalamaFiyat', shares='$toplamAdet' WHERE symbol='$symbol'"
+            val ekleQuery = "UPDATE portfoy SET buying_price='$ortalamaFiyat', shares='$toplamAdet' WHERE symbol='$symbol'"
             dbsql.execSQL(ekleQuery)
-
-
-            val eskibakiyeQuery = "SELECT * FROM testbakiye1"
+            val eskibakiyeQuery = "SELECT * FROM bakiye"
             val eskibakiyeCursor = dbsql.rawQuery(eskibakiyeQuery, null)
             var eskibakiye = 0.00
+
             if (eskibakiyeCursor.moveToFirst()) {
                 eskibakiye = eskibakiyeCursor.getDouble(0)
             }
@@ -189,7 +206,7 @@ class BuyActivity : AppCompatActivity() {
             val formatedtoplamtutar_dbl = formatedtoplamtutar.toDouble()
             val yeniBakiye = (eskibakiye - formatedtoplamtutar_dbl)
             val formattedYenibakiye = String.format(Locale.US, "%.2f", yeniBakiye).toDouble()
-            val bakiyeGuncelleQuery = "UPDATE testbakiye1 SET bakiye='$formattedYenibakiye'"
+            val bakiyeGuncelleQuery = "UPDATE bakiye SET bakiye='$formattedYenibakiye'"
             dbsql.execSQL(bakiyeGuncelleQuery)
 
             Toast.makeText(this, "Satın Alma Başarılı", Toast.LENGTH_LONG).show()
@@ -197,22 +214,23 @@ class BuyActivity : AppCompatActivity() {
             val goHome = Intent(this, MainActivity::class.java)
             startActivity(goHome)
         } else {
-            val satinalQuery = "INSERT INTO table3 (stocks, symbol, buying_price, shares) VALUES ('$stockname', '$symbol', $price, $shares)"
+
+            val satinalQuery = "INSERT INTO portfoy (stocks, symbol, buying_price, shares) VALUES ('$stockname', '$symbol', $alisfiyati, $shares)"
             dbsql.execSQL(satinalQuery)
 
-            val eskibakiyeQuery = "SELECT * FROM testbakiye1"
+            val eskibakiyeQuery = "SELECT * FROM bakiye"
             val eskibakiyeCursor = dbsql.rawQuery(eskibakiyeQuery, null)
             var eskibakiye = 0.00
             if (eskibakiyeCursor.moveToFirst()) {
                 eskibakiye = eskibakiyeCursor.getDouble(0)
             }
             eskibakiyeCursor.close()
+
             val topTutar = binding.toplamTutar.text.toString()
-            val formatedtoplamtutar = topTutar.replace("$","")
-            val formatedtoplamtutar_dbl = formatedtoplamtutar.toDouble()
+            val formatedtoplamtutar_dbl = topTutar.replace("$","").toDouble()
             val yeniBakiye = (eskibakiye - formatedtoplamtutar_dbl)
             val formattedYenibakiye = String.format(Locale.US, "%.2f", yeniBakiye).toDouble()
-            val bakiyeGuncelleQuery = "UPDATE testbakiye1 SET bakiye='$formattedYenibakiye'"
+            val bakiyeGuncelleQuery = "UPDATE bakiye SET bakiye='$formattedYenibakiye'"
             dbsql.execSQL(bakiyeGuncelleQuery)
 
             Toast.makeText(this, "Satın Alma Başarılı", Toast.LENGTH_LONG).show()
