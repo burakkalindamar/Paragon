@@ -197,6 +197,7 @@ class StocksActivity : AppCompatActivity() {
         go_sellActivity.putExtra("symbol", symbol)
         go_sellActivity.putExtra("company", company)
         startActivity(go_sellActivity)
+        finish()
     }
 
     fun go_buyActivity(view: View) {
@@ -204,6 +205,7 @@ class StocksActivity : AppCompatActivity() {
         go_buyActivity.putExtra("symbol", symbol)
         go_buyActivity.putExtra("company", company)
         startActivity(go_buyActivity)
+        finish()
     }
 
     fun go_DataActivity(view: View) {
@@ -211,6 +213,7 @@ class StocksActivity : AppCompatActivity() {
         go_DataActivity.putExtra("symbol", symbol)
         go_DataActivity.putExtra("company", company)
         startActivity(go_DataActivity)
+        finish()
     }
 
 }

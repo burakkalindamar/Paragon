@@ -50,17 +50,13 @@ class MainActivity : AppCompatActivity() {
     }
 
     override fun onBackPressed() {
-        if (backPressedTime + 2000 > System.currentTimeMillis()) {
-            // İki kez arka arkaya basıldığında zaman dilimini kontrol ediyoruz
-            super.onBackPressed()
-            return
-        } else {
-            // İlk kez geri tuşuna basıldığında
-            toast =
-                Toast.makeText(baseContext, "Çıkış yapmak için tekrar basın", Toast.LENGTH_SHORT)
-            toast.show()
-        }
-        backPressedTime = System.currentTimeMillis()
+        super.onBackPressed()
+        exitApp()
+    }
+
+    fun exitApp() {
+        finishAffinity() // Tüm activity'leri kapatır
+        System.exit(0)
     }
 
     private fun recyclerView() {
