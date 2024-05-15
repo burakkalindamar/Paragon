@@ -19,11 +19,12 @@ import com.google.firebase.firestore.firestore
 class DataActivity : AppCompatActivity() {
     private lateinit var binding: ActivityDataBinding
     private val db = Firebase.firestore
-    val symbol = intent.getStringExtra("symbol")
-    val company = intent.getStringExtra("company")
-
+    lateinit var symbol : String
+    lateinit var company : String
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        symbol = intent.getStringExtra("symbol").toString()
+        company = intent.getStringExtra("company").toString()
         enableEdgeToEdge()
         binding()
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
