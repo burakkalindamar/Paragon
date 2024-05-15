@@ -118,6 +118,7 @@ class SellActivity : AppCompatActivity() {
                 var adet_int = adet.toIntOrNull()
                 if (adet_int == null) {
                     binding.mevcutadet.setTextColor(ContextCompat.getColor(context, R.color.grey))
+                    binding.sell.isEnabled = false
                     adet_int = 0
                 }
                 //Satılacak adet sayısını kontrol eder
@@ -175,9 +176,7 @@ class SellActivity : AppCompatActivity() {
 
     @SuppressLint("Recycle")
     fun sat(view: View) {
-        val stockname = binding.name.text.toString()
         val symbol = binding.symbol.text.toString()
-        val price = binding.sellPrice.text.toString().toDouble()
         val shares = binding.selladet.text.toString().toInt()
 
         //Hissenin veri tabanında var mı kontrol eder

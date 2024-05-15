@@ -123,6 +123,7 @@ class BuyActivity : AppCompatActivity() {
                 var adet_int = adet.toIntOrNull()
                 if (adet_int == null) {
                     binding.mevcutbakiye.setTextColor(ContextCompat.getColor(context, R.color.grey))
+                    binding.buy.isEnabled = false
                     adet_int = 0
                 }
 
