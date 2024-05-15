@@ -22,7 +22,7 @@ import java.util.Locale
 
 class MainActivity : AppCompatActivity() {
     lateinit var binding: ActivityMainBinding
-    lateinit var dbsql : SQLiteDatabase
+    lateinit var dbsql: SQLiteDatabase
     lateinit var context: Context
     private val db = Firebase.firestore
     private var portfoylist = ArrayList<PortfoyModel>()
@@ -39,7 +39,7 @@ class MainActivity : AppCompatActivity() {
         veritabanitemizle()
         PortfoyAdapter = PortfoyAdapter(portfoylist)
         portfoyListele()
-        
+
 
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
@@ -56,32 +56,34 @@ class MainActivity : AppCompatActivity() {
             return
         } else {
             // İlk kez geri tuşuna basıldığında
-            toast = Toast.makeText(baseContext, "Çıkış yapmak için tekrar basın", Toast.LENGTH_SHORT)
+            toast =
+                Toast.makeText(baseContext, "Çıkış yapmak için tekrar basın", Toast.LENGTH_SHORT)
             toast.show()
         }
         backPressedTime = System.currentTimeMillis()
     }
+
     private fun recyclerView() {
         val recyclerView = binding.portfoyum
         val layoutManager = LinearLayoutManager(this)
         recyclerView.layoutManager = layoutManager
-        recyclerView.adapter = PortfoyAdapter // Sınıf düzeyindeki PortfoyAdapter'ı kullan
+        recyclerView.adapter = PortfoyAdapter
     }
 
-    fun go_search(view: View){
+    fun go_search(view: View) {
         finish()
         val go_search = Intent(this, Search_page::class.java)
         startActivity(go_search)
     }
 
-    fun refresh_balance(view: View){
+    fun refresh_balance(view: View) {
         val refresh_balance = Intent(this, MainActivity::class.java)
         startActivity(refresh_balance)
         finish()
     }
 
-    fun binding(){
-        binding=ActivityMainBinding.inflate(layoutInflater)
+    fun binding() {
+        binding = ActivityMainBinding.inflate(layoutInflater)
         val view = binding.root
         setContentView(view)
     }
@@ -107,8 +109,6 @@ class MainActivity : AppCompatActivity() {
         binding.bakiye.text = "$$bakiye"
         bakiyeCursor.close()
     }
-
-
 
     @SuppressLint("Recycle", "SetTextI18n", "NotifyDataSetChanged")
     fun portfoyListele() {
@@ -143,7 +143,7 @@ class MainActivity : AppCompatActivity() {
                         val shares_dbl = shares.toDoubleOrNull() ?: 0.0
                         val deger = anlik * shares_dbl
 
-                        val veri = PortfoyModel(company, anlik_fiyat, price, shares,symbol)
+                        val veri = PortfoyModel(company, anlik_fiyat, price, shares, symbol)
                         portfoylist.add(veri)
                         PortfoyAdapter.notifyDataSetChanged()
 
@@ -161,12 +161,12 @@ class MainActivity : AppCompatActivity() {
     }
 
     @SuppressLint("Recycle")
-    fun veritabanitemizle(){
+    fun veritabanitemizle() {
         //Bütün adetleri satılan hisseleri portföyden siler
         val portfoyQuery = "SELECT * FROM portfoy"
-        val portfoyCursor = dbsql.rawQuery(portfoyQuery,null)
+        val portfoyCursor = dbsql.rawQuery(portfoyQuery, null)
 
-        if(portfoyCursor.moveToFirst()){
+        if (portfoyCursor.moveToFirst()) {
             val silQuery = "DELETE FROM portfoy WHERE shares=0"
             dbsql.execSQL(silQuery)
         }

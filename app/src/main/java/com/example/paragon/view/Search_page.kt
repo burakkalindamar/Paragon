@@ -45,48 +45,55 @@ class Search_page : AppCompatActivity() {
         finish() // İsterseniz bu sayfayı sonlandırabilirsiniz, isteğe bağlı.
     }
 
-
-    fun go_balance(view: View){
+    fun go_balance(view: View) {
         val go_balance = Intent(this, MainActivity::class.java)
         startActivity(go_balance)
         finish()
     } // anasayfaya gider
 
-
-
-    fun binding(){
-        binding=ActivitySearchPageBinding.inflate(layoutInflater)
+    fun binding() {
+        binding = ActivitySearchPageBinding.inflate(layoutInflater)
         val view = binding.root
         setContentView(view)
     }
 
     @SuppressLint("NotifyDataSetChanged")
-    private fun hisse_verilerinni_al(){
+    private fun hisse_verilerinni_al() {
         db.collection("Stocks").addSnapshotListener { snapshot, error ->
-            if (error!=null)
-            {
+            if (error != null) {
                 Toast.makeText(this, error.localizedMessage, Toast.LENGTH_SHORT).show()
-            }else{
-                if (snapshot!=null){
-                    if (!snapshot.isEmpty){
+            } else {
+                if (snapshot != null) {
+                    if (!snapshot.isEmpty) {
                         val stocks = snapshot.documents
 
                         stocklist.clear()
-                        for ( stock in stocks){
+                        for (stock in stocks) {
 
-                            val symbol = stock.get("symbol") as String ?:""
-                            val price = stock.get("price") as String ?:""
+                            val symbol = stock.get("symbol") as String ?: ""
+                            val price = stock.get("price") as String ?: ""
                             val company = stock.get("company") as String
-                            val opening_price = stock.get("opening_price") as String ?:""
-                            val daily_highest = stock.get("daily_highest") as String ?:""
-                            val daily_lowest = stock.get("daily_lowest") as String ?:""
-                            val highest_price = stock.get("highest_price") as String ?:""
-                            val lowest_price = stock.get("lowest_price") as String ?:""
-                            val pe_ratio = stock.get("pe_ratio") as String ?:""
+                            val opening_price = stock.get("opening_price") as String ?: ""
+                            val daily_highest = stock.get("daily_highest") as String ?: ""
+                            val daily_lowest = stock.get("daily_lowest") as String ?: ""
+                            val highest_price = stock.get("highest_price") as String ?: ""
+                            val lowest_price = stock.get("lowest_price") as String ?: ""
+                            val pe_ratio = stock.get("pe_ratio") as String ?: ""
 
-                            val change = degisim_hesapla(price,opening_price)
+                            val change = degisim_hesapla(price, opening_price)
 
-                            val alinanveri = StocksModel(symbol,price,company,change,daily_highest,daily_lowest,highest_price,lowest_price,pe_ratio,opening_price)
+                            val alinanveri = StocksModel(
+                                symbol,
+                                price,
+                                company,
+                                change,
+                                daily_highest,
+                                daily_lowest,
+                                highest_price,
+                                lowest_price,
+                                pe_ratio,
+                                opening_price
+                            )
                             stocklist.add(alinanveri)
                         }
                         stocksAdapter.notifyDataSetChanged()
@@ -97,12 +104,12 @@ class Search_page : AppCompatActivity() {
         }
     } //hisse verilerini alır
 
-    fun recyclerView(){
+    fun recyclerView() {
         val recyclerView = binding.recyclerView
-        val layoutManager=LinearLayoutManager(this)
-        recyclerView.layoutManager=layoutManager
+        val layoutManager = LinearLayoutManager(this)
+        recyclerView.layoutManager = layoutManager
         stocksAdapter = StocksAdapter(stocklist)
-        recyclerView.adapter=stocksAdapter
+        recyclerView.adapter = stocksAdapter
     } //recyclerviewe itemleri atar
 
 

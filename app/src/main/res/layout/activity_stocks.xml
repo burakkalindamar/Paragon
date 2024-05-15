@@ -47,6 +47,15 @@
             android:textAlignment="center"
             android:text="TextView" />
 
+        <ImageButton
+            android:id="@+id/imageButton4"
+            android:layout_width="90dp"
+            android:layout_gravity="end"
+            android:onClick="go_DataActivity"
+            android:background="@color/white"
+            android:layout_height="match_parent"
+            app:srcCompat="@drawable/baseline_saved_search_24" />
+
 
     </FrameLayout>
 

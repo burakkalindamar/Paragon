@@ -4,16 +4,13 @@ import android.annotation.SuppressLint
 import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
-import android.util.Log
 import android.view.View
-import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.example.paragon.R
 import com.example.paragon.databinding.ActivityStocksBinding
-import com.example.paragon.model.StocksModel
 import com.github.mikephil.charting.data.Entry
 import com.github.mikephil.charting.data.LineData
 import com.github.mikephil.charting.data.LineDataSet
@@ -26,6 +23,8 @@ class StocksActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityStocksBinding
     private val db = Firebase.firestore
+    val symbol = intent.getStringExtra("symbol")
+    val company = intent.getStringExtra("company")
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -37,12 +36,11 @@ class StocksActivity : AppCompatActivity() {
             insets
         }
         line_chart()
-        //verileriYaz()
         verileri_cek_yaz()
     }
 
-    fun binding(){
-        binding= ActivityStocksBinding.inflate(layoutInflater)
+    fun binding() {
+        binding = ActivityStocksBinding.inflate(layoutInflater)
         val view = binding.root
         setContentView(view)
     }
@@ -55,11 +53,10 @@ class StocksActivity : AppCompatActivity() {
             .addOnSuccessListener { snapshot ->
                 if (snapshot != null && !snapshot.isEmpty) {
                     val stocks = snapshot.documents
-                    var fiyatlar: ArrayList<*>?=null
+                    var fiyatlar: ArrayList<*>? = null
                     for (stock in stocks) {
                         fiyatlar = (stock.get("fiyatlar30") as? ArrayList<*>)!!
                     }
-
 
                     val uzunluk = fiyatlar!!.size
 
@@ -68,26 +65,24 @@ class StocksActivity : AppCompatActivity() {
 
                 }
 
-                    // Veri noktalarını kullanarak LineDataSet oluşturun
-                    val veriSeti = LineDataSet(veriNoktalari, "")
+                // Veri noktalarını kullanarak LineDataSet oluşturun
+                val veriSeti = LineDataSet(veriNoktalari, "")
 
-                    // Görsel Özelleştirme
-                    veriSeti.color = Color.parseColor("#1d6fdb")
-                    veriSeti.lineWidth = 4f
-                    veriSeti.setDrawFilled(true)
-                    veriSeti.fillColor = Color.parseColor("#1d6fdb")
-                    veriSeti.setDrawCircles(false) // Daireleri kaldırır
-                    veriSeti.setDrawValues(false)  // Üstlerindeki metinleri kaldırır
+                // Görsel Özelleştirme
+                veriSeti.color = Color.parseColor("#1d6fdb")
+                veriSeti.lineWidth = 4f
+                veriSeti.setDrawFilled(true)
+                veriSeti.fillColor = Color.parseColor("#1d6fdb")
+                veriSeti.setDrawCircles(false) // Daireleri kaldırır
+                veriSeti.setDrawValues(false)  // Üstlerindeki metinleri kaldırır
 
-                    // Bezier eğrileri kullanarak daha yumuşak bir eğri elde et
-                    veriSeti.mode = LineDataSet.Mode.CUBIC_BEZIER
+                // Bezier eğrileri kullanarak daha yumuşak bir eğri elde et
+                veriSeti.mode = LineDataSet.Mode.CUBIC_BEZIER
 
-                    val hatVerisi = LineData(veriSeti)
+                val hatVerisi = LineData(veriSeti)
 
-                    // Hat grafiğini görüntülemek için kullanılan görünüm referansı
-                    binding.lineChart.data = hatVerisi
-
-
+                // Hat grafiğini görüntülemek için kullanılan görünüm referansı
+                binding.lineChart.data = hatVerisi
 
                 // Gereksiz Öğelerin Kaldırılması
                 binding.lineChart.setDrawGridBackground(false)
@@ -108,7 +103,7 @@ class StocksActivity : AppCompatActivity() {
                 // Grafiği güncelle
                 binding.lineChart.invalidate()
             }
-        }
+    }
 
     @SuppressLint("SetTextI18n")
     fun verileri_cek_yaz() {
@@ -172,7 +167,6 @@ class StocksActivity : AppCompatActivity() {
             }
     }
 
-
     fun degisim_hesapla(price: String, opening_price: String): String {
         val x: String = price.replace(",", ".")
         val y: String = opening_price.replace(",", ".")
@@ -194,25 +188,26 @@ class StocksActivity : AppCompatActivity() {
     }
 
     fun go_sellActivity(view: View) {
-            val symbol = intent.getStringExtra("symbol")
-            val company = intent.getStringExtra("company")
-            val go_sellActivity = Intent(this, SellActivity::class.java)
-            go_sellActivity.putExtra("symbol", symbol)
-            go_sellActivity.putExtra("company", company)
-            startActivity(go_sellActivity)
-        }
+        val go_sellActivity = Intent(this, SellActivity::class.java)
+        go_sellActivity.putExtra("symbol", symbol)
+        go_sellActivity.putExtra("company", company)
+        startActivity(go_sellActivity)
+    }
 
     fun go_buyActivity(view: View) {
-            val symbol = intent.getStringExtra("symbol")
-            val company = intent.getStringExtra("company")
-            val go_buyActivity = Intent(this, BuyActivity::class.java)
-            go_buyActivity.putExtra("symbol", symbol)
-            go_buyActivity.putExtra("company", company)
-
-            startActivity(go_buyActivity)
-        }
-
-
+        val go_buyActivity = Intent(this, BuyActivity::class.java)
+        go_buyActivity.putExtra("symbol", symbol)
+        go_buyActivity.putExtra("company", company)
+        startActivity(go_buyActivity)
     }
+
+    fun go_DataActivity(view: View) {
+        val go_DataActivity = Intent(this, DataActivity::class.java)
+        go_DataActivity.putExtra("symbol", symbol)
+        go_DataActivity.putExtra("company", company)
+        startActivity(go_DataActivity)
+    }
+
+}
 
 
