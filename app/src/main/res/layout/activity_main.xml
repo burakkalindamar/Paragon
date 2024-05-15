@@ -78,17 +78,62 @@
     </FrameLayout>
 
     <FrameLayout
+        android:id="@+id/frameLayout8"
+        android:layout_margin="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/radius"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/frameLayout">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="70dp"
+            android:text="Açılış: 16:30"
+            android:textColor="@color/grey">
+
+        </TextView>
+
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="40dp"
+            android:layout_marginLeft="30dp"
+            android:layout_height="match_parent"
+            app:srcCompat="@drawable/baseline_sunny_24" />
+
+        <ImageView
+            android:id="@+id/imageView1"
+            android:layout_width="40dp"
+            android:layout_marginLeft="170dp"
+            android:layout_height="match_parent"
+            app:srcCompat="@drawable/baseline_nightlight_24" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_gravity="end"
+            android:layout_marginRight="30dp"
+            android:text="Kapanış: 23:00"
+            android:textColor="@color/grey">
+
+        </TextView>
+
+    </FrameLayout>
+
+    <FrameLayout
         android:id="@+id/frameLayout6"
         android:layout_width="match_parent"
         android:layout_height="180dp"
         android:layout_marginLeft="20dp"
-        android:layout_marginTop="10dp"
         android:layout_marginRight="20dp"
-
+        android:layout_marginTop="10dp"
         android:background="@drawable/radius"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/frameLayout">
+        app:layout_constraintTop_toBottomOf="@+id/frameLayout8">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -97,18 +142,18 @@
 
 
             <LinearLayout
-                android:padding="10dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:background="@drawable/portfoyname"
                 android:orientation="horizontal"
-                android:background="@drawable/portfoyname">
+                android:padding="10dp">
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:gravity="center"
                     android:fontFamily="sans-serif-condensed"
+                    android:gravity="center"
                     android:text="NAKİT BAKİYE :"
                     android:textColor="@color/blue"
                     android:textSize="15dp">
@@ -120,9 +165,9 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="$2342.99"
-                    android:gravity="center"
                     android:fontFamily="sans-serif-condensed"
+                    android:gravity="center"
+                    android:text="$2342.99"
                     android:textColor="@color/black"
                     android:textSize="20dp">
 
@@ -133,19 +178,19 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:orientation="vertical"
+                android:layout_marginTop="5dp"
                 android:background="@drawable/portfoyname"
-                android:layout_marginTop="5dp">
+                android:orientation="vertical">
 
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="PORTFÖY DEĞERİ"
-                    android:gravity="center"
-                    android:textColor="@color/black"
                     android:fontFamily="sans-serif-condensed"
-                    android:textSize="18dp"
-                    android:padding="8dp">
+                    android:gravity="center"
+                    android:padding="8dp"
+                    android:text="PORTFÖY DEĞERİ"
+                    android:textColor="@color/black"
+                    android:textSize="18dp">
 
                 </TextView>
 
@@ -160,12 +205,12 @@
                     android:id="@+id/deger"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:text=""
-                    android:gravity="center"
-                    android:textColor="@color/black"
                     android:fontFamily="sans-serif-condensed"
-                    android:textSize="25dp"
-                    android:padding="5dp">
+                    android:gravity="center"
+                    android:padding="5dp"
+                    android:text=""
+                    android:textColor="@color/black"
+                    android:textSize="25dp">
 
                 </TextView>
 
