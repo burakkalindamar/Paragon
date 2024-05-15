@@ -228,6 +228,7 @@ class SellActivity : AppCompatActivity() {
     }
 
     fun geri(view: View) {
+        finish()
         onBackPressed()
     }
 }

@@ -188,6 +188,7 @@ class StocksActivity : AppCompatActivity() {
     } //günlük fiyat değişimini hesaplar
 
     fun geri(view: View) {
+        finish()
         onBackPressed()
     }
 

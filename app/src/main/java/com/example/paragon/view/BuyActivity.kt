@@ -52,6 +52,7 @@ class BuyActivity : AppCompatActivity() {
     }
 
     fun geri(view: View) {
+        finish()
         onBackPressed()
     }
 

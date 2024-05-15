@@ -146,6 +146,7 @@ class DataActivity : AppCompatActivity() {
     }
 
     fun geri(view: View) {
+        finish()
         onBackPressed()
     }
 
