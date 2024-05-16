@@ -213,7 +213,6 @@ class StocksActivity : AppCompatActivity() {
         go_DataActivity.putExtra("symbol", symbol)
         go_DataActivity.putExtra("company", company)
         startActivity(go_DataActivity)
-        finish()
     }
 
 }

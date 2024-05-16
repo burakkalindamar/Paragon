@@ -1,5 +1,6 @@
 package com.example.paragon.view
 
+import com.example.paragon.view.MainActivity
 import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
