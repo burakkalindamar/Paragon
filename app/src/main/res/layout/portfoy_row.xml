@@ -1,11 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_marginBottom="10dp"
     android:layout_width="wrap_content"
     android:layout_height="130dp"
+    android:layout_marginBottom="10dp"
     android:background="@drawable/radius"
     android:orientation="vertical"
     tools:ignore="MissingConstraints">
@@ -45,10 +44,10 @@
                 android:orientation="vertical">
 
                 <LinearLayout
-                    android:gravity="center"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
+                    android:gravity="center"
                     android:orientation="horizontal">
 
                     <TextView
@@ -62,23 +61,22 @@
 
                     <TextView
                         android:id="@+id/portfoyStockPrice"
-                        android:layout_weight="1"
-                        android:gravity="center"
-                        android:textColor="@color/black"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:layout_weight="1"
                         android:fontFamily="sans-serif-condensed"
-                        android:text="$186.67" />
-
+                        android:gravity="center"
+                        android:text="$186.67"
+                        android:textColor="@color/black" />
 
 
                 </LinearLayout>
 
                 <LinearLayout
-                    android:gravity="center"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
+                    android:gravity="center"
                     android:orientation="horizontal">
 
                     <TextView
@@ -92,23 +90,22 @@
 
                     <TextView
                         android:id="@+id/maliyet"
-                        android:layout_weight="1"
-                        android:gravity="center"
-                        android:textColor="@color/black"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:layout_weight="1"
                         android:fontFamily="sans-serif-condensed"
-                        android:text="$186.67" />
-
+                        android:gravity="center"
+                        android:text="$186.67"
+                        android:textColor="@color/black" />
 
 
                 </LinearLayout>
 
                 <LinearLayout
-                    android:gravity="center"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
+                    android:gravity="center"
                     android:orientation="horizontal">
 
                     <TextView
@@ -122,13 +119,13 @@
 
                     <TextView
                         android:id="@+id/shares"
-                        android:layout_weight="1"
-                        android:gravity="center"
-                        android:textColor="@color/black"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:layout_weight="1"
                         android:fontFamily="sans-serif-condensed"
-                        android:text="8" />
+                        android:gravity="center"
+                        android:text="8"
+                        android:textColor="@color/black" />
 
                 </LinearLayout>
             </LinearLayout>
@@ -141,27 +138,25 @@
             </FrameLayout>
 
             <LinearLayout
-                android:layout_gravity="end"
                 android:layout_width="250dp"
                 android:layout_height="match_parent"
+                android:layout_gravity="end"
                 android:layout_weight="1"
                 android:orientation="vertical"
                 android:padding="3dp">
 
 
-
-
-                    <TextView
-                        android:id="@+id/portfoytoplamtutar"
-                        android:layout_width="match_parent"
-                        android:layout_height="49dp"
-                        android:layout_weight="1"
-                        android:fontFamily="sans-serif-condensed"
-                        android:gravity="center"
-                        android:padding="5dp"
-                        android:text="$684.32"
-                        android:textColor="@color/black"
-                        android:textSize="17dp" />
+                <TextView
+                    android:id="@+id/portfoytoplamtutar"
+                    android:layout_width="match_parent"
+                    android:layout_height="49dp"
+                    android:layout_weight="1"
+                    android:fontFamily="sans-serif-condensed"
+                    android:gravity="center"
+                    android:padding="5dp"
+                    android:text="$684.32"
+                    android:textColor="@color/black"
+                    android:textSize="17dp" />
 
 
                 <FrameLayout

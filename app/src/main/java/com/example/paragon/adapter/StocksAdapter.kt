@@ -13,9 +13,10 @@ import com.example.paragon.R.layout.recycler_row
 import com.example.paragon.model.StocksModel
 import com.example.paragon.view.StocksActivity
 
-class StocksAdapter(private val stocklist:ArrayList<StocksModel>) : RecyclerView.Adapter<StocksAdapter.StockHolder>() {
+class StocksAdapter(private val stocklist: ArrayList<StocksModel>) :
+    RecyclerView.Adapter<StocksAdapter.StockHolder>() {
 
-    class StockHolder (itemView : View):RecyclerView.ViewHolder(itemView){
+    class StockHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val symbol: TextView = itemView.findViewById(R.id.symbol)
         val price: TextView = itemView.findViewById(R.id.price)
         val company: TextView = itemView.findViewById(R.id.company)
@@ -35,7 +36,7 @@ class StocksAdapter(private val stocklist:ArrayList<StocksModel>) : RecyclerView
     @SuppressLint("SetTextI18n")
     override fun onBindViewHolder(holder: StockHolder, position: Int) {
         holder.symbol.text = stocklist[position].symbol
-        holder.price.text = "$"+stocklist[position].price
+        holder.price.text = "$" + stocklist[position].price
         holder.company.text = stocklist[position].company
 
         //günlük değişimin rengini belirler
@@ -47,15 +48,15 @@ class StocksAdapter(private val stocklist:ArrayList<StocksModel>) : RecyclerView
             "#4CAF50" // Yeşil
         }
         holder.daily_cahange.setTextColor(Color.parseColor(color))
-        holder.daily_cahange.text = stocklist[position].change+"%"
+        holder.daily_cahange.text = stocklist[position].change + "%"
 
 
         holder.itemView.setOnClickListener {
             val intent = Intent(holder.itemView.context, StocksActivity::class.java)
 
-            intent.putExtra("company",stocklist[position].company)
+            intent.putExtra("company", stocklist[position].company)
 
-            intent.putExtra("symbol",stocklist[position].symbol)
+            intent.putExtra("symbol", stocklist[position].symbol)
 
 
             holder.itemView.context.startActivity(intent)

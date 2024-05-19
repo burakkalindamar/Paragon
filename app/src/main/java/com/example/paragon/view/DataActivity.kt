@@ -19,8 +19,8 @@ import com.google.firebase.firestore.firestore
 class DataActivity : AppCompatActivity() {
     private lateinit var binding: ActivityDataBinding
     private val db = Firebase.firestore
-    lateinit var symbol : String
-    lateinit var company : String
+    lateinit var symbol: String
+    lateinit var company: String
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         symbol = intent.getStringExtra("symbol").toString()

@@ -1,88 +1,84 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="100dp"
     android:layout_marginLeft="10dp"
     android:layout_marginRight="10dp"
-    android:layout_width="match_parent"
     android:layout_marginBottom="15dp"
-    android:layout_height="100dp"
-    android:orientation="vertical"
     android:background="@drawable/radius"
-    >
+    android:orientation="vertical">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="horizontal"
         android:gravity="center_vertical"
+        android:orientation="horizontal"
         tools:ignore="UselessParent">
 
         <LinearLayout
             android:layout_width="wrap_content"
-            android:layout_weight="1"
             android:layout_height="match_parent"
+            android:layout_weight="1"
             android:orientation="vertical">
 
 
             <TextView
-                android:layout_marginTop="13dp"
-                android:layout_marginLeft="40dp"
+                android:id="@+id/company"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginLeft="40dp"
+                android:layout_marginTop="13dp"
                 android:layout_weight="1"
-                android:textSize="22sp"
-                android:textColor="@color/black"
                 android:fontFamily="sans-serif-condensed"
                 android:text="Apple"
-                android:id="@+id/company">
-            </TextView>
+                android:textColor="@color/black"
+                android:textSize="22sp"></TextView>
+
             <TextView
-                android:layout_marginLeft="40dp"
+                android:id="@+id/symbol"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginLeft="40dp"
                 android:layout_weight="1"
-                android:textSize="15sp"
                 android:fontFamily="sans-serif-condensed"
                 android:text="AAPL"
-                android:id="@+id/symbol">
-            </TextView>
+                android:textSize="15sp"></TextView>
 
 
         </LinearLayout>
 
 
         <LinearLayout
-            android:layout_weight="1"
-            android:layout_marginEnd="40dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:gravity="end">
+            android:layout_marginEnd="40dp"
+            android:layout_weight="1"
+            android:gravity="end"
+            android:orientation="vertical">
 
 
             <TextView
+                android:id="@+id/price"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:fontFamily="sans-serif-condensed"
                 android:layout_weight="1"
+                android:fontFamily="sans-serif-condensed"
+                android:gravity="end"
+                android:text="183,38"
                 android:textColor="@color/black"
                 android:textSize="30sp"
-                android:text="183,38"
-                android:gravity="end"
-                android:textStyle="bold"
-                android:id="@+id/price">
-            </TextView>
+                android:textStyle="bold"></TextView>
+
             <TextView
+                android:id="@+id/daily_change"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:fontFamily="sans-serif-condensed"
                 android:layout_weight="1"
-                android:textSize="20sp"
-                android:text="+4,89%"
+                android:fontFamily="sans-serif-condensed"
                 android:gravity="end"
-                android:id="@+id/daily_change">
-            </TextView>
+                android:text="+4,89%"
+                android:textSize="20sp"></TextView>
 
 
         </LinearLayout>

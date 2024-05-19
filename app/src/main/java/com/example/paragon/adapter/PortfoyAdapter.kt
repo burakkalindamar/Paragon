@@ -13,10 +13,10 @@ import com.example.paragon.model.PortfoyModel
 import com.example.paragon.view.StocksActivity
 import java.util.Locale
 
-class PortfoyAdapter(private val portfoylist:ArrayList<PortfoyModel>) :
+class PortfoyAdapter(private val portfoylist: ArrayList<PortfoyModel>) :
     RecyclerView.Adapter<PortfoyAdapter.PortfoyHolder>() {
 
-    class PortfoyHolder (itemView: View) : RecyclerView.ViewHolder(itemView){
+    class PortfoyHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
         val name: TextView = itemView.findViewById(R.id.companyname)
         val price: TextView = itemView.findViewById(R.id.portfoyStockPrice)
@@ -53,7 +53,6 @@ class PortfoyAdapter(private val portfoylist:ArrayList<PortfoyModel>) :
             holder.toplam_tutar.text = "$$formattedtoplamtutar"
 
 
-
             val ortalamaFiyat = portfoylist[position].price.replace(",", ".").toDoubleOrNull()
             if (ortalamaFiyat != null) {
                 val change = ((anlikFiyat - ortalamaFiyat) / anlikFiyat) * 100
@@ -78,8 +77,8 @@ class PortfoyAdapter(private val portfoylist:ArrayList<PortfoyModel>) :
 
         holder.itemView.setOnClickListener {
             val intent = Intent(holder.itemView.context, StocksActivity::class.java)
-            intent.putExtra("symbol",portfoylist[position].symbol)
-            intent.putExtra("company",portfoylist[position].company)
+            intent.putExtra("symbol", portfoylist[position].symbol)
+            intent.putExtra("company", portfoylist[position].company)
             holder.itemView.context.startActivity(intent)
 
         }

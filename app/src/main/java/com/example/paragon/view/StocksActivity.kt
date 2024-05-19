@@ -23,8 +23,8 @@ class StocksActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityStocksBinding
     private val db = Firebase.firestore
-    lateinit var symbol:String
-    lateinit var company:String
+    lateinit var symbol: String
+    lateinit var company: String
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -197,7 +197,6 @@ class StocksActivity : AppCompatActivity() {
         go_sellActivity.putExtra("symbol", symbol)
         go_sellActivity.putExtra("company", company)
         startActivity(go_sellActivity)
-        finish()
     }
 
     fun go_buyActivity(view: View) {
@@ -205,7 +204,6 @@ class StocksActivity : AppCompatActivity() {
         go_buyActivity.putExtra("symbol", symbol)
         go_buyActivity.putExtra("company", company)
         startActivity(go_buyActivity)
-        finish()
     }
 
     fun go_DataActivity(view: View) {

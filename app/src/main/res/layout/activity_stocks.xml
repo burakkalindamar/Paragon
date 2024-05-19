@@ -64,13 +64,13 @@
         android:id="@+id/lineChart"
         android:layout_width="match_parent"
         android:layout_height="220dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginRight="10dp"
+        android:background="@drawable/radius"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        android:layout_marginRight="10dp"
-        android:layout_marginLeft="10dp"
-        android:layout_marginTop="10dp"
-        android:background="@drawable/radius"
         app:layout_constraintTop_toBottomOf="@+id/linearLayout3">
 
     </com.github.mikephil.charting.charts.LineChart>
@@ -80,8 +80,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp"
         android:layout_marginTop="5dp"
+        android:layout_marginRight="10dp"
         android:background="@drawable/radius"
         android:orientation="horizontal"
         app:layout_constraintTop_toBottomOf="@+id/frameLayout8"
@@ -116,19 +116,19 @@
         android:id="@+id/linearLayout4"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
         android:layout_marginTop="10dp"
         android:layout_marginRight="10dp"
-        android:layout_marginLeft="10dp"
         android:orientation="horizontal"
         app:layout_constraintTop_toBottomOf="@+id/lineChart"
         tools:layout_editor_absoluteX="1dp">
 
         <LinearLayout
-            android:layout_marginEnd="2dp"
-            android:background="@drawable/radius"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:layout_marginEnd="2dp"
             android:layout_weight="1"
+            android:background="@drawable/radius"
             android:orientation="vertical">
 
             <LinearLayout
@@ -142,8 +142,8 @@
                 <TextView
                     android:layout_width="115dp"
                     android:layout_height="wrap_content"
-                    android:gravity="center"
                     android:fontFamily="sans-serif-condensed"
+                    android:gravity="center"
                     android:text="Açılış"
                     android:textSize="15sp">
 
@@ -153,8 +153,8 @@
                     android:id="@+id/openingPrice"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:gravity="center"
                     android:fontFamily="sans-serif-condensed"
+                    android:gravity="center"
                     android:text="$186.65"
                     android:textColor="@color/black"
                     android:textSize="20sp">
@@ -173,8 +173,8 @@
                 <TextView
                     android:layout_width="115dp"
                     android:layout_height="wrap_content"
-                    android:gravity="center"
                     android:fontFamily="sans-serif-condensed"
+                    android:gravity="center"
                     android:text="En Yüksek"
                     android:textSize="15sp">
 
@@ -184,8 +184,8 @@
                     android:id="@+id/dailyHighest"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:gravity="center"
                     android:fontFamily="sans-serif-condensed"
+                    android:gravity="center"
                     android:text="$187.00"
                     android:textColor="@color/black"
                     android:textSize="20sp">
@@ -224,11 +224,11 @@
         </LinearLayout>
 
         <LinearLayout
-            android:layout_marginLeft="2dp"
-            android:background="@drawable/radius"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:layout_marginLeft="2dp"
             android:layout_weight="1"
+            android:background="@drawable/radius"
             android:orientation="vertical">
 
             <LinearLayout
@@ -241,9 +241,9 @@
 
                 <TextView
                     android:layout_width="115dp"
-                    android:gravity="center"
                     android:layout_height="wrap_content"
                     android:fontFamily="sans-serif-condensed"
+                    android:gravity="center"
                     android:text="F/K"
                     android:textSize="15sp">
 
@@ -253,8 +253,8 @@
                     android:id="@+id/peRatio"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:gravity="center"
                     android:fontFamily="sans-serif-condensed"
+                    android:gravity="center"
                     android:text="26.08"
                     android:textColor="@color/black"
                     android:textSize="20sp">
@@ -272,8 +272,8 @@
                 <TextView
                     android:layout_width="115dp"
                     android:layout_height="wrap_content"
-                    android:gravity="center"
                     android:fontFamily="sans-serif-condensed"
+                    android:gravity="center"
                     android:text="En Düşük"
                     android:textSize="15sp">
 
@@ -313,8 +313,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:fontFamily="sans-serif-condensed"
-                    android:text="$164.08"
                     android:gravity="center"
+                    android:text="$164.08"
                     android:textColor="@color/black"
                     android:textSize="20sp">
 
@@ -340,37 +340,37 @@
             android:id="@+id/filledTonalButton2"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_weight="1"
             android:layout_margin="5dp"
-            android:fontFamily="sans-serif-condensed"
+            android:layout_weight="1"
             android:background="@drawable/sellbutton"
-            android:textSize="30dp"
-            android:text="SAT"
+            android:fontFamily="sans-serif-condensed"
             android:onClick="go_sellActivity"
-            android:textColor="@color/white" />
+            android:text="SAT"
+            android:textColor="@color/white"
+            android:textSize="30dp" />
 
         <Button
-            android:textColor="@color/white"
-            android:layout_weight="1"
             android:id="@+id/filledTonalButton"
-            android:layout_margin="5dp"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:layout_margin="5dp"
+            android:layout_weight="1"
+            android:background="@drawable/buybutton"
             android:fontFamily="sans-serif-condensed"
-            android:text="Al"
             android:onClick="go_buyActivity"
-            android:textSize="30dp"
-            android:background="@drawable/buybutton"/>
+            android:text="Al"
+            android:textColor="@color/white"
+            android:textSize="30dp" />
     </LinearLayout>
 
     <TextView
         android:id="@+id/textView2"
-        android:layout_marginTop="-28dp"
-        android:textSize="10dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="-28dp"
         android:fontFamily="sans-serif-condensed"
         android:text="30 GÜNLÜK GRAFİK"
+        android:textSize="10dp"
         app:layout_constraintBottom_toTopOf="@+id/linearLayout4"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -381,8 +381,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp"
         android:layout_marginTop="5dp"
+        android:layout_marginRight="10dp"
         android:background="@drawable/radius"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/frameLayout11">
@@ -391,6 +391,7 @@
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_marginLeft="50dp"
+            android:fontFamily="sans-serif-condensed"
             android:text="Veriler 15 dakika gecikmeli gelmektedir."
             android:textColor="@color/grey"
             android:textSize="15dp">
