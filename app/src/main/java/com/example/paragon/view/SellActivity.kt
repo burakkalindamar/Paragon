@@ -18,6 +18,8 @@ import com.example.paragon.R
 import com.example.paragon.databinding.ActivitySellBinding
 import com.google.firebase.Firebase
 import com.google.firebase.firestore.firestore
+import java.time.LocalDate
+import java.time.format.DateTimeFormatter
 import java.util.Locale
 
 class SellActivity : AppCompatActivity() {
@@ -178,6 +180,7 @@ class SellActivity : AppCompatActivity() {
     fun sat(view: View) {
         val symbol = binding.symbol.text.toString()
         val shares = binding.selladet.text.toString().toInt()
+        val satisfiyati = binding.sellPrice.text.toString()
 
         //Hissenin veri tabanında var mı kontrol eder
         val symbolExistsQuery = "SELECT 1 FROM portfoy WHERE symbol='$symbol' LIMIT 1"
@@ -217,17 +220,34 @@ class SellActivity : AppCompatActivity() {
             val bakiyeGuncelleQuery = "UPDATE bakiye SET bakiye='$formattedYenibakiye'"
             dbsql.execSQL(bakiyeGuncelleQuery)
 
+            val tarih = tarih_al()
+            val satisfiyatidbl = satisfiyati.toDouble()
+            val islem_ekle_Query = "INSERT INTO islemler (symbol, tarih, adet, fiyat, islem) VALUES ('$symbol', '$tarih', $shares, $satisfiyatidbl, 'SATIM')"
+            dbsql.execSQL(islem_ekle_Query)
+
+
             Toast.makeText(this, "Satma İşlemi Başarılı", Toast.LENGTH_LONG).show()
             finish()
             val goHome = Intent(this, MainActivity::class.java)
             startActivity(goHome)
-
-
         }
+
     }
 
     fun geri(view: View) {
         finish()
         onBackPressed()
+    }
+
+    fun tarih_al(): String? {
+        // Geçerli tarihi al
+        val currentDate = LocalDate.now()
+
+        // Tarihi dönüştür
+        val formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy")
+
+        val formattedDate = currentDate.format(formatter)
+
+        return formattedDate
     }
 }

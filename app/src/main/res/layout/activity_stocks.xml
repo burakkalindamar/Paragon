@@ -390,9 +390,9 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:layout_marginLeft="50dp"
+            android:layout_marginLeft="58dp"
             android:fontFamily="sans-serif-condensed"
-            android:text="Veriler 15 dakika gecikmeli gelmektedir."
+            android:text="Veriler 5 dakika gecikmeli gelmektedir."
             android:textColor="@color/grey"
             android:textSize="15dp">
 

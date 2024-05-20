@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="100dp"
+    android:layout_marginBottom="20dp"
+    android:background="@drawable/radius"
+    android:orientation="vertical"
+    tools:ignore="MissingConstraints">
+
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/islem"
+                android:layout_width="match_parent"
+                android:background="@drawable/portfoyname"
+                android:layout_height="wrap_content"
+                android:fontFamily="sans-serif-condensed"
+                android:gravity="center"
+                android:text="ALIŞ"
+                android:textColor="@color/white" />
+        </FrameLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/islemSymbol"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:textColor="@color/black"
+                    android:fontFamily="sans-serif-condensed"
+                    android:layout_weight="1"
+                    android:textSize="15dp"
+                    android:text="AAPL">
+                </TextView>
+
+                <TextView
+                    android:id="@+id/islemDate"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:fontFamily="sans-serif-condensed"
+                    android:textColor="@color/black"
+                    android:layout_weight="1"
+                    android:textSize="15dp"
+                    android:text="20.05.2024">
+                </TextView>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/islemAdet"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:layout_weight="1"
+                    android:textColor="@color/black"
+                    android:fontFamily="sans-serif-condensed"
+                    android:textSize="15dp"
+                    android:text="53 Adet">
+                </TextView>
+
+                <TextView
+                    android:id="@+id/islemFiyat"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:textColor="@color/black"
+                    android:textSize="15dp"
+                    android:fontFamily="sans-serif-condensed"
+                    android:text="$198.22">
+                </TextView>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_weight="1"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/islemToplam"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:fontFamily="sans-serif-condensed"
+                    android:textColor="@color/black"
+                    android:textSize="18dp"
+                    android:text="$1888.63">
+                </TextView>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+
+</LinearLayout>
+

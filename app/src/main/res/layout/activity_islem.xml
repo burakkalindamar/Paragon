@@ -3,34 +3,13 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
+    android:background="@color/background"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/background"
-    tools:context=".view.Search_page">
-
-    <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        app:layout_constraintBottom_toTopOf="@+id/linearLayout2"
-        app:layout_constraintTop_toBottomOf="@+id/frameLayout2">
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
-
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/recyclerView"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:clipToPadding="false"
-                android:paddingTop="10dp"
-                android:paddingBottom="10dp" />
-        </LinearLayout>
-    </ScrollView>
+    tools:context=".view.IslemActivity">
 
     <LinearLayout
-        android:id="@+id/linearLayout2"
+        android:id="@+id/linearLayout"
         android:layout_width="match_parent"
         android:layout_height="70dp"
         android:orientation="horizontal"
@@ -39,34 +18,36 @@
         app:layout_constraintStart_toStartOf="parent">
 
         <ImageButton
-            android:id="@+id/search_search_button"
+            android:id="@+id/islem_search_button"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:background="#263A3A3A"
+            android:background="@color/white"
+            android:onClick="go_search"
             app:srcCompat="@drawable/baseline_search_24" />
 
         <ImageButton
-            android:id="@+id/search_balance_button"
+            android:id="@+id/islem_balance_button"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:background="@color/white"
             android:onClick="go_balance"
+            android:background="@color/white"
             app:srcCompat="@drawable/baseline_account_balance_wallet_24" />
 
         <ImageButton
-            android:id="@+id/imageButton5"
+            android:id="@+id/islem_islem_button"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:onClick="go_islem"
-            android:background="@color/white"
+            android:background="#263A3A3A"
             android:layout_weight="1"
-            app:srcCompat="@drawable/baseline_history_24" />
+            android:onClick="go_islem"
+            android:src="@drawable/baseline_history_24" />
+
     </LinearLayout>
 
     <FrameLayout
-        android:id="@+id/frameLayout2"
+        android:id="@+id/frameLayout"
         android:layout_width="match_parent"
         android:layout_height="100dp"
         android:background="@color/white"
@@ -75,15 +56,40 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <TextView
-            android:id="@+id/textView4"
+            android:textColor="@color/black"
+            android:id="@+id/textView3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:autoSizeTextType="none"
             android:fontFamily="sans-serif-condensed"
-            android:text="HİSSE SENETLERİ"
-            android:textColor="@color/black"
+            android:text="İŞLEMLERİM"
             android:textSize="24sp" />
     </FrameLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginTop="10dp"
+        app:layout_constraintBottom_toTopOf="@+id/linearLayout"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/frameLayout">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:orientation="vertical">
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/islemlerim"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+        </LinearLayout>
+    </ScrollView>
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

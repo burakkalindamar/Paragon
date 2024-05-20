@@ -43,7 +43,7 @@ class Search_page : AppCompatActivity() {
         // Geri tuşuna basıldığında yapılacak işlemler
         val intent = Intent(this, MainActivity::class.java)
         startActivity(intent)
-        finish() // İsterseniz bu sayfayı sonlandırabilirsiniz, isteğe bağlı.
+        finish()
     }
 
     fun go_balance(view: View) {
@@ -51,6 +51,12 @@ class Search_page : AppCompatActivity() {
         startActivity(go_balance)
         finish()
     } // anasayfaya gider
+
+    fun go_islem(view: View) {
+        val go_islem = Intent(this, IslemActivity::class.java)
+        startActivity(go_islem)
+        finish()
+    }
 
     fun binding() {
         binding = ActivitySearchPageBinding.inflate(layoutInflater)

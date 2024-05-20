@@ -79,7 +79,7 @@ class DataActivity : AppCompatActivity() {
             .addOnFailureListener { exception ->
                 Toast.makeText(
                     this,
-                    "Veriler Alınırken Hata Oluştu: ${exception.message}",
+                    "Veriler Alınırken Hata Oluştu",
                     Toast.LENGTH_LONG
                 ).show()
             }

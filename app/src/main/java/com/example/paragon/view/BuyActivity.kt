@@ -19,6 +19,9 @@ import com.example.paragon.databinding.ActivityBuyBinding
 import com.google.firebase.Firebase
 import com.google.firebase.firestore.firestore
 import java.util.Locale
+import java.time.LocalDate
+import java.time.format.DateTimeFormatter
+
 
 class BuyActivity : AppCompatActivity() {
     private lateinit var binding: ActivityBuyBinding
@@ -181,6 +184,7 @@ class BuyActivity : AppCompatActivity() {
         val alisfiyati = alisfiyatistr.replace("$", "").toDouble()
         val shares = binding.adet.text.toString().toIntOrNull() ?: 0
 
+
         //hissenin var olup olmadığına bak
         val symbolExistsQuery = "SELECT 1 FROM portfoy WHERE symbol='$symbol' LIMIT 1"
         val cursor = dbsql.rawQuery(symbolExistsQuery, null)
@@ -218,9 +222,7 @@ class BuyActivity : AppCompatActivity() {
             dbsql.execSQL(bakiyeGuncelleQuery)
 
             Toast.makeText(this, "Satın Alma Başarılı", Toast.LENGTH_LONG).show()
-            finish()
-            val goHome = Intent(this, MainActivity::class.java)
-            startActivity(goHome)
+
         } else {
 
             val satinalQuery =
@@ -243,9 +245,28 @@ class BuyActivity : AppCompatActivity() {
             dbsql.execSQL(bakiyeGuncelleQuery)
 
             Toast.makeText(this, "Satın Alma Başarılı", Toast.LENGTH_LONG).show()
-            finish()
-            val goHome = Intent(this, MainActivity::class.java)
-            startActivity(goHome)
+
         }
+
+
+        val tarih = tarih_al()
+        val islem_ekle_Query = "INSERT INTO islemler (symbol, tarih, adet, fiyat, islem) VALUES ('$symbol', '$tarih', $shares, $alisfiyati, 'ALIM')"
+        dbsql.execSQL(islem_ekle_Query)
+
+        finish()
+        val goHome = Intent(this, MainActivity::class.java)
+        startActivity(goHome)
+    }
+
+    fun tarih_al(): String? {
+        // Geçerli tarihi al
+        val currentDate = LocalDate.now()
+
+        // Tarihi dönüştür
+        val formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy")
+
+        val formattedDate = currentDate.format(formatter)
+
+        return formattedDate
     }
 }

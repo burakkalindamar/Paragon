@@ -27,19 +27,15 @@ class MainActivity : AppCompatActivity() {
     private val db = Firebase.firestore
     private var portfoylist = ArrayList<PortfoyModel>()
     private lateinit var PortfoyAdapter: PortfoyAdapter
-    private var backPressedTime: Long = 0
-    private lateinit var toast: Toast
-
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
-        binding() //binding işlemlemleri
+        binding()
         database()
         veritabanitemizle()
         PortfoyAdapter = PortfoyAdapter(portfoylist)
         portfoyListele()
-
 
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
@@ -72,6 +68,12 @@ class MainActivity : AppCompatActivity() {
         startActivity(go_search)
     }
 
+    fun go_islem(view: View) {
+        finish()
+        val go_islem = Intent(this, IslemActivity::class.java)
+        startActivity(go_islem)
+    }
+
     fun refresh_balance(view: View) {
         val refresh_balance = Intent(this, MainActivity::class.java)
         startActivity(refresh_balance)
@@ -90,6 +92,7 @@ class MainActivity : AppCompatActivity() {
         dbsql = context.openOrCreateDatabase("testdb", Context.MODE_PRIVATE, null)
         dbsql.execSQL("CREATE TABLE IF NOT EXISTS portfoy(stocks TEXT, symbol TEXT, buying_price REAL, shares INTEGER)")
         dbsql.execSQL("CREATE TABLE IF NOT EXISTS bakiye (bakiye REAL)")
+        dbsql.execSQL("CREATE TABLE IF NOT EXISTS islemler (symbol TEXT, tarih TEXT, adet INTEGER, fiyat REAL, islem TEXT)")
         val bakiye_kontrolQuery = "SELECT bakiye FROM bakiye"
         val bakiyeCursor = dbsql.rawQuery(bakiye_kontrolQuery, null)
         var bakiye: Double = 0.0
